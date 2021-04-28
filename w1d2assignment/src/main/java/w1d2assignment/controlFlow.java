@@ -7,7 +7,7 @@ public class controlFlow {
 		controlFlow cF = new controlFlow();
 		System.out.println(cF.printNumberInWord(-2));
 		System.out.println(cF.reverse("testing"));
-
+		
 	}
 
 	public String printNumberInWord(int num) {
@@ -59,7 +59,7 @@ public class controlFlow {
 //
 //Signature:
 //public String printNumberInWord(int number) {
-//		// TODO Write an implementation for this method declaration
+//		// TODO Write an implementation for this method declaration+
 //		
 //		return ;
 //	}
