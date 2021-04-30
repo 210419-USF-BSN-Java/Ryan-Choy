@@ -2,25 +2,23 @@ package com.revature.shop.models;
 
 import java.io.Serializable;
 
-public class User{
+public class User implements Serializable{
 
-	private int uid;
+	private static final long serialVersionUID = 1L;
+
+	private Integer uid;
 	private String usertype;
 	private String email;
 	private String password;
 	private String firstname;
 	private String lastname;
-	private int phonenumber;
-
-	
-	
+	private Integer phonenumber;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public User(int uid, String usertype, String email, String password, String firstname, String lastname,
-			int phonenumber) {
+	public User(Integer uid, String usertype, String email, String password, String firstname, String lastname,
+			Integer phonenumber) {
 		super();
 		this.uid = uid;
 		this.usertype = usertype;
@@ -30,69 +28,53 @@ public class User{
 		this.lastname = lastname;
 		this.phonenumber = phonenumber;
 	}
-
-	public int getUid() {
-		return uid;
-	}
-
-	public void setUid(int uid) {
-		this.uid = uid;
-	}
-
-	public String getUsertype() {
-		return usertype;
-	}
-
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public int getPhonenumber() {
-		return phonenumber;
-	}
-
-	public void setPhonenumber(int phonenumber) {
-		this.phonenumber = phonenumber;
-	}
-
 	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", usertype=" + usertype + ", email=" + email + ", password=" + password
 				+ ", firstname=" + firstname + ", lastname=" + lastname + ", phonenumber=" + phonenumber + "]";
 	}
-
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+	public String getUsertype() {
+		return usertype;
+	}
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public Integer getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(Integer phonenumber) {
+		this.phonenumber = phonenumber;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,12 +83,11 @@ public class User{
 		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + phonenumber;
-		result = prime * result + uid;
+		result = prime * result + ((phonenumber == null) ? 0 : phonenumber.hashCode());
+		result = prime * result + ((uid == null) ? 0 : uid.hashCode());
 		result = prime * result + ((usertype == null) ? 0 : usertype.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -136,9 +117,15 @@ public class User{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (phonenumber != other.phonenumber)
+		if (phonenumber == null) {
+			if (other.phonenumber != null)
+				return false;
+		} else if (!phonenumber.equals(other.phonenumber))
 			return false;
-		if (uid != other.uid)
+		if (uid == null) {
+			if (other.uid != null)
+				return false;
+		} else if (!uid.equals(other.uid))
 			return false;
 		if (usertype == null) {
 			if (other.usertype != null)
@@ -148,6 +135,7 @@ public class User{
 		return true;
 	}
 
+	
 	
 	
 }

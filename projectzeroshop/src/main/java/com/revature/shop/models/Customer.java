@@ -1,13 +1,18 @@
 package com.revature.shop.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Customer {
-	private int gid;
-	private String grimname;
-	private int uid;
+public class Customer implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
+	//gid and grim name on db
+	private Grimlist grimoire;
+	//uid on db
+	private User owner;
 	private BigDecimal debt;
-	private int payterm;
+	private Integer payterm;
 	private BigDecimal weekpay;
 	
 	public Customer() {
@@ -15,14 +20,19 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(int gid, String grimname, int uid, BigDecimal debt, int payterm, BigDecimal weekpay) {
+	public Customer(Grimlist grimoire, User owner, BigDecimal debt, Integer payterm, BigDecimal weekpay) {
 		super();
-		this.gid = gid;
-		this.grimname = grimname;
-		this.uid = uid;
+		this.grimoire = grimoire;
+		this.owner = owner;
 		this.debt = debt;
 		this.payterm = payterm;
 		this.weekpay = weekpay;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [grimoire=" + grimoire + ", owner=" + owner + ", debt=" + debt + ", payterm=" + payterm
+				+ ", weekpay=" + weekpay + "]";
 	}
 
 	@Override
@@ -30,10 +40,9 @@ public class Customer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((debt == null) ? 0 : debt.hashCode());
-		result = prime * result + gid;
-		result = prime * result + ((grimname == null) ? 0 : grimname.hashCode());
-		result = prime * result + payterm;
-		result = prime * result + uid;
+		result = prime * result + ((grimoire == null) ? 0 : grimoire.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		result = prime * result + ((payterm == null) ? 0 : payterm.hashCode());
 		result = prime * result + ((weekpay == null) ? 0 : weekpay.hashCode());
 		return result;
 	}
@@ -52,16 +61,20 @@ public class Customer {
 				return false;
 		} else if (!debt.equals(other.debt))
 			return false;
-		if (gid != other.gid)
-			return false;
-		if (grimname == null) {
-			if (other.grimname != null)
+		if (grimoire == null) {
+			if (other.grimoire != null)
 				return false;
-		} else if (!grimname.equals(other.grimname))
+		} else if (!grimoire.equals(other.grimoire))
 			return false;
-		if (payterm != other.payterm)
+		if (owner == null) {
+			if (other.owner != null)
+				return false;
+		} else if (!owner.equals(other.owner))
 			return false;
-		if (uid != other.uid)
+		if (payterm == null) {
+			if (other.payterm != null)
+				return false;
+		} else if (!payterm.equals(other.payterm))
 			return false;
 		if (weekpay == null) {
 			if (other.weekpay != null)
@@ -71,28 +84,20 @@ public class Customer {
 		return true;
 	}
 
-	public int getGid() {
-		return gid;
+	public Grimlist getGrimoire() {
+		return grimoire;
 	}
 
-	public void setGid(int gid) {
-		this.gid = gid;
+	public void setGrimoire(Grimlist grimoire) {
+		this.grimoire = grimoire;
 	}
 
-	public String getGrimname() {
-		return grimname;
+	public User getOwner() {
+		return owner;
 	}
 
-	public void setGrimname(String grimname) {
-		this.grimname = grimname;
-	}
-
-	public int getUid() {
-		return uid;
-	}
-
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
 	public BigDecimal getDebt() {
@@ -103,11 +108,11 @@ public class Customer {
 		this.debt = debt;
 	}
 
-	public int getPayterm() {
+	public Integer getPayterm() {
 		return payterm;
 	}
 
-	public void setPayterm(int payterm) {
+	public void setPayterm(Integer payterm) {
 		this.payterm = payterm;
 	}
 
@@ -118,12 +123,10 @@ public class Customer {
 	public void setWeekpay(BigDecimal weekpay) {
 		this.weekpay = weekpay;
 	}
+	
+	
+	
 
-	@Override
-	public String toString() {
-		return "Customer [gid=" + gid + ", grimname=" + grimname + ", uid=" + uid + ", debt=" + debt + ", payterm="
-				+ payterm + ", weekpay=" + weekpay + "]";
-	}
 
 	
 	

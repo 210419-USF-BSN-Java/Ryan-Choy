@@ -1,56 +1,56 @@
 package com.revature.shop.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Offers {
+public class Offers implements Serializable  {
+	
+	private static final long serialVersionUID = 1L;
 
 	private String date;
-	private int oid;
-	private int gid;
-	private String grimname;
-	private int uid;
-	private String firstname;
-	private String lastname;
+	private Integer oid;
+	//gid and grim name on db
+	private Grimlist grimoire;
+	//uid, first name, last name on db
+	private User customer;
 	private BigDecimal offer;
-	private int payterm;
+	private Integer payterm;
 	private String offerstatus;
-	
-	
 	
 	public Offers() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Offers(String date, int oid, int gid, String grimname, int uid, String firstname, String lastname,
-			BigDecimal offer, int payterm, String offerstatus) {
+	public Offers(String date, Integer oid, Grimlist grimoire, User customer, BigDecimal offer, Integer payterm,
+			String offerstatus) {
 		super();
 		this.date = date;
 		this.oid = oid;
-		this.gid = gid;
-		this.grimname = grimname;
-		this.uid = uid;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.grimoire = grimoire;
+		this.customer = customer;
 		this.offer = offer;
 		this.payterm = payterm;
 		this.offerstatus = offerstatus;
 	}
 
 	@Override
+	public String toString() {
+		return "Offers [date=" + date + ", oid=" + oid + ", grimoire=" + grimoire + ", customer=" + customer
+				+ ", offer=" + offer + ", payterm=" + payterm + ", offerstatus=" + offerstatus + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
-		result = prime * result + gid;
-		result = prime * result + ((grimname == null) ? 0 : grimname.hashCode());
-		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((grimoire == null) ? 0 : grimoire.hashCode());
 		result = prime * result + ((offer == null) ? 0 : offer.hashCode());
 		result = prime * result + ((offerstatus == null) ? 0 : offerstatus.hashCode());
-		result = prime * result + oid;
-		result = prime * result + payterm;
-		result = prime * result + uid;
+		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
+		result = prime * result + ((payterm == null) ? 0 : payterm.hashCode());
 		return result;
 	}
 
@@ -63,27 +63,20 @@ public class Offers {
 		if (getClass() != obj.getClass())
 			return false;
 		Offers other = (Offers) obj;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (firstname == null) {
-			if (other.firstname != null)
+		if (grimoire == null) {
+			if (other.grimoire != null)
 				return false;
-		} else if (!firstname.equals(other.firstname))
-			return false;
-		if (gid != other.gid)
-			return false;
-		if (grimname == null) {
-			if (other.grimname != null)
-				return false;
-		} else if (!grimname.equals(other.grimname))
-			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
-				return false;
-		} else if (!lastname.equals(other.lastname))
+		} else if (!grimoire.equals(other.grimoire))
 			return false;
 		if (offer == null) {
 			if (other.offer != null)
@@ -95,11 +88,15 @@ public class Offers {
 				return false;
 		} else if (!offerstatus.equals(other.offerstatus))
 			return false;
-		if (oid != other.oid)
+		if (oid == null) {
+			if (other.oid != null)
+				return false;
+		} else if (!oid.equals(other.oid))
 			return false;
-		if (payterm != other.payterm)
-			return false;
-		if (uid != other.uid)
+		if (payterm == null) {
+			if (other.payterm != null)
+				return false;
+		} else if (!payterm.equals(other.payterm))
 			return false;
 		return true;
 	}
@@ -112,52 +109,28 @@ public class Offers {
 		this.date = date;
 	}
 
-	public int getOid() {
+	public Integer getOid() {
 		return oid;
 	}
 
-	public void setOid(int oid) {
+	public void setOid(Integer oid) {
 		this.oid = oid;
 	}
 
-	public int getGid() {
-		return gid;
+	public Grimlist getGrimoire() {
+		return grimoire;
 	}
 
-	public void setGid(int gid) {
-		this.gid = gid;
+	public void setGrimoire(Grimlist grimoire) {
+		this.grimoire = grimoire;
 	}
 
-	public String getGrimname() {
-		return grimname;
+	public User getCustomer() {
+		return customer;
 	}
 
-	public void setGrimname(String grimname) {
-		this.grimname = grimname;
-	}
-
-	public int getUid() {
-		return uid;
-	}
-
-	public void setUid(int uid) {
-		this.uid = uid;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setCustomer(User customer) {
+		this.customer = customer;
 	}
 
 	public BigDecimal getOffer() {
@@ -168,11 +141,11 @@ public class Offers {
 		this.offer = offer;
 	}
 
-	public int getPayterm() {
+	public Integer getPayterm() {
 		return payterm;
 	}
 
-	public void setPayterm(int payterm) {
+	public void setPayterm(Integer payterm) {
 		this.payterm = payterm;
 	}
 
@@ -183,15 +156,10 @@ public class Offers {
 	public void setOfferstatus(String offerstatus) {
 		this.offerstatus = offerstatus;
 	}
+	
+	
+	
 
-	@Override
-	public String toString() {
-		return "Offers [date=" + date + ", oid=" + oid + ", gid=" + gid + ", grimname=" + grimname + ", uid=" + uid
-				+ ", firstname=" + firstname + ", lastname=" + lastname + ", offer=" + offer + ", payterm=" + payterm
-				+ ", offerstatus=" + offerstatus + "]";
-	}
-	
-	
 	
 	
 }
