@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -46,13 +48,16 @@ public class ShopFront {
 //		u.setPhonenumber(Integer.parseInt(scan.nextLine()));
 //		
 //		System.out.println(cs.registerCustomer(u));
+//		
+//		List<Grimlist> test = new ArrayList<>();
+//		test = cs.viewGrimoiresSale();
+//		for (Grimlist s : test) {
+//			System.out.println(s);
+//		}
+//		
 		
-		List<Grimlist> test = new ArrayList<>();
-		test = cs.viewGrimoiresSale();
-		for (Grimlist s : test) {
-			System.out.println(s);
-		}
 		
+		String test = LocalDate.now().toString();
 
 	}
 }

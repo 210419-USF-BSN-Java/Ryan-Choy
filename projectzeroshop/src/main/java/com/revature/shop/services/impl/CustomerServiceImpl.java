@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Offers makeOffer(Offers o) {
-		// TODO Auto-generated method stub
+		
 		return cd.makeOffer(o);
 	}
 
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public String makePayment(BigDecimal pay, Integer payterm) {
-		return cd.makePayment(pay, payterm);
+	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) {
+		return cd.makePayment(pay, payterm, gid);
 	}
 }

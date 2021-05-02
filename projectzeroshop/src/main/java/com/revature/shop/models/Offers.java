@@ -2,12 +2,13 @@ package com.revature.shop.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Offers implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 
-	private String date;
+	private String odate;
 	private Integer oid;
 	//gid and grim name on db
 	private Grimlist grimoire;
@@ -16,16 +17,14 @@ public class Offers implements Serializable  {
 	private BigDecimal offer;
 	private Integer payterm;
 	private String offerstatus;
-	
 	public Offers() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Offers(String date, Integer oid, Grimlist grimoire, User customer, BigDecimal offer, Integer payterm,
+	public Offers(String odate, Integer oid, Grimlist grimoire, User customer, BigDecimal offer, Integer payterm,
 			String offerstatus) {
 		super();
-		this.date = date;
+		this.odate = odate;
 		this.oid = oid;
 		this.grimoire = grimoire;
 		this.customer = customer;
@@ -33,19 +32,16 @@ public class Offers implements Serializable  {
 		this.payterm = payterm;
 		this.offerstatus = offerstatus;
 	}
-
 	@Override
 	public String toString() {
-		return "Offers [date=" + date + ", oid=" + oid + ", grimoire=" + grimoire + ", customer=" + customer
-				+ ", offer=" + offer + ", payterm=" + payterm + ", offerstatus=" + offerstatus + "]";
+		return "Offers [oid=" + oid + ", grimoire=" + grimoire + ", customer=" + customer + ", offer=" + offer
+				+ ", payterm=" + payterm + ", offerstatus=" + offerstatus + "]";
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((grimoire == null) ? 0 : grimoire.hashCode());
 		result = prime * result + ((offer == null) ? 0 : offer.hashCode());
 		result = prime * result + ((offerstatus == null) ? 0 : offerstatus.hashCode());
@@ -53,7 +49,6 @@ public class Offers implements Serializable  {
 		result = prime * result + ((payterm == null) ? 0 : payterm.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -67,11 +62,6 @@ public class Offers implements Serializable  {
 			if (other.customer != null)
 				return false;
 		} else if (!customer.equals(other.customer))
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
 			return false;
 		if (grimoire == null) {
 			if (other.grimoire != null)
@@ -100,66 +90,50 @@ public class Offers implements Serializable  {
 			return false;
 		return true;
 	}
-
-	public String getDate() {
-		return date;
+	public String getOdate() {
+		return odate;
 	}
-
-	public void setDate(String date) {
-		this.date = date;
+	public void setOdate(String odate) {
+		this.odate = odate;
 	}
-
 	public Integer getOid() {
 		return oid;
 	}
-
 	public void setOid(Integer oid) {
 		this.oid = oid;
 	}
-
 	public Grimlist getGrimoire() {
 		return grimoire;
 	}
-
 	public void setGrimoire(Grimlist grimoire) {
 		this.grimoire = grimoire;
 	}
-
 	public User getCustomer() {
 		return customer;
 	}
-
 	public void setCustomer(User customer) {
 		this.customer = customer;
 	}
-
 	public BigDecimal getOffer() {
 		return offer;
 	}
-
 	public void setOffer(BigDecimal offer) {
 		this.offer = offer;
 	}
-
 	public Integer getPayterm() {
 		return payterm;
 	}
-
 	public void setPayterm(Integer payterm) {
 		this.payterm = payterm;
 	}
-
 	public String getOfferstatus() {
 		return offerstatus;
 	}
-
 	public void setOfferstatus(String offerstatus) {
 		this.offerstatus = offerstatus;
 	}
 	
 	
-	
-
 	
 	
 }

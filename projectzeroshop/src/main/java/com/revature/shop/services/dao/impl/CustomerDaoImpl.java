@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,32 +54,33 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override	
 	public Offers makeOffer(Offers o) {
 		Offers result = new Offers();
-		String sql = "INSERT INTO shop.offer(gid,grimname,uid,firstname,lastname,offer,payterm) VALUES (?,?,?,?,?,?,?) RETURNING date,oid,offerstatus";
+		String sql = "INSERT INTO shop.offer(date,gid,grimname,uid,firstname,lastname,offer,payterm) VALUES (?,?,?,?,?,?,?,?) RETURNING oid,offerstatus";
 		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
-			ps.setInt(1, o.getGrimoire().getGid());
-			ps.setString(2, o.getGrimoire().getGrimname());
-			ps.setInt(3, o.getCustomer().getUid());
-			ps.setString(4, o.getCustomer().getFirstname());
-			ps.setString(5, o.getCustomer().getLastname());
-			ps.setBigDecimal(6, o.getOffer());
-			ps.setInt(7, o.getPayterm());
+			ps.setString(1, LocalDate.now().toString());
+			ps.setInt(2, o.getGrimoire().getGid());
+			ps.setString(3, o.getGrimoire().getGrimname());
+			ps.setInt(4, o.getCustomer().getUid());
+			ps.setString(5, o.getCustomer().getFirstname());
+			ps.setString(6, o.getCustomer().getLastname());
+			ps.setBigDecimal(7, o.getOffer());
+			ps.setInt(8, o.getPayterm());
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				
+				result = o;
+				result.setOdate(rs.getString("date"));
+				result.setOid(rs.getInt("oid"));
+				result.setOfferstatus(rs.getString("offerstatus"));
 			}
-			
-			
 			
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return result;
 	}
 
@@ -94,7 +96,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			ps.setString(2, u.getPassword());
 			ps.setString(3, u.getFirstname());
 			ps.setString(4, u.getLastname());
-			ps.setInt(5, u.getPhonenumber());
+			ps.setString(4, u.getPhonenumber());
 
 			ResultSet rs = ps.executeQuery();
 
@@ -113,14 +115,74 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public List<Customer> viewOwnedBooks(Integer uid) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Customer> ownBook = new ArrayList<>();
+		String sql = "SELECT * FROM shop.customer c JOIN shop.grimlist g ON c.gid = g.gid JOIN shop.users ON c.uid = u.uid WHERE c.uid = ?";
+		
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
+			ps.setInt(1, uid);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Grimlist book = new Grimlist();
+				User owner = new User();
+				Customer list = new Customer();
+				book.setGid(rs.getInt("gid"));
+				book.setGrimname(rs.getString("grimname"));
+				book.setGrimschool(rs.getString("grimschool"));
+				book.setGrimauthor(rs.getString("grimauthor"));
+				book.setGrimcondition(rs.getString("grimcondition"));
+				book.setGrimstatus(rs.getString("grimstatus"));
+				book.setGrimnote(rs.getString("grimnote"));
+				book.setBaseprice(new BigDecimal(rs.getString("baseprice").replaceAll("[$,]", "")));
+
+				owner.setUid(rs.getInt("uid"));
+				owner.setUsertype(rs.getString("usertype"));
+				owner.setEmail(rs.getString("email"));
+				owner.setPassword(rs.getString("password"));
+				owner.setFirstname(rs.getString("firstname"));
+				owner.setLastname(rs.getString("lastname"));
+				owner.setPhonenumber(rs.getString("phonenumber"));
+				
+				list.setDebt(new BigDecimal(rs.getString("debt").replaceAll("[$,]", "")));
+				list.setPayterm(rs.getInt("payterm"));
+				list.setWeekpay(new BigDecimal(rs.getString("weekpay").replaceAll("[$,]", "")));
+				list.setGrimoire(book);
+				list.setOwner(owner);
+				ownBook.add(list);	
+			}
+			
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ownBook;
 	}
 
 	@Override
-	public String makePayment(BigDecimal pay, Integer payterm) {
-		// TODO Auto-generated method stub
-		return null;
+	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) {
+		
+		String sql = "UPDATE shop.customer SET (debt,payterm) = (?,?) WHERE gid = ?";
+		Integer result = null;
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
+			ps.setBigDecimal(1, pay);
+			ps.setInt(2, payterm);
+			ps.setInt(3, gid);
+			
+			 result = ps.executeUpdate();
+			
+			
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result != 0) {
+		return "Payment successful!";
+		} else {
+			return "Payment failed!";
+		}
 	}
 
 }

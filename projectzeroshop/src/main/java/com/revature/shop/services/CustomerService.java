@@ -13,6 +13,6 @@ public interface CustomerService {
 	public Offers makeOffer(Offers o);
 	public User registerCustomer(User u);
 	public List<Customer> viewOwnedBooks(Integer uid);
-	public String makePayment(BigDecimal pay, Integer payterm);
+	public String makePayment(BigDecimal pay, Integer payterm, Integer gid);
 
 }

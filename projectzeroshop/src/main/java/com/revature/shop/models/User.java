@@ -12,13 +12,13 @@ public class User implements Serializable{
 	private String password;
 	private String firstname;
 	private String lastname;
-	private Integer phonenumber;
+	private String phonenumber;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public User(Integer uid, String usertype, String email, String password, String firstname, String lastname,
-			Integer phonenumber) {
+			String phonenumber) {
 		super();
 		this.uid = uid;
 		this.usertype = usertype;
@@ -69,10 +69,10 @@ public class User implements Serializable{
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public Integer getPhonenumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
-	public void setPhonenumber(Integer phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 	@Override
