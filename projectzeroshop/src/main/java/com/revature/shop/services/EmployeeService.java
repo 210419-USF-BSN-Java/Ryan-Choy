@@ -12,7 +12,8 @@ public interface EmployeeService {
 	public String moveGrimoire(Integer gid, String grimstatus) throws ShopException;
 	public String updateGrimoire(Grimlist grim) throws ShopException;
 	public List<Offers> viewOffers(String offerstatus);
-	public String updateOffers(String offerstatus) throws ShopException;
+	public String acceptOffer(Integer oid);
+	public String rejectRest(Integer gid);
 	public List<Customer> getPayment();
 	
 	

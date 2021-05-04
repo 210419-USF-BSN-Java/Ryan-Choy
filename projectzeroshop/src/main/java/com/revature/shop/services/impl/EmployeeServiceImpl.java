@@ -39,15 +39,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public String updateOffers(String offerstatus) throws ShopException {
+	public String acceptOffer(Integer oid){
 		
-		return ed.updateOffers(offerstatus);
+		return ed.acceptOffer(oid);
 	}
 
 	@Override
 	public List<Customer> getPayment() {
 		// TODO Auto-generated method stub
 		return ed.getPayment();
+	}
+
+	@Override
+	public String rejectRest(Integer gid) {
+		// TODO Auto-generated method stub
+		return ed.rejectRest(gid);
 	}
 
 }
