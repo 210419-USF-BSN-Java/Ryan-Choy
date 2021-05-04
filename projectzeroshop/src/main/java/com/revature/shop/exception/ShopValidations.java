@@ -63,15 +63,22 @@ public class ShopValidations {
 			return false;
 		}
 	}
-	
+
 	public static boolean isValidPhone(String phone) {
-		if(phone != null && phone.matches("[0-9]{10}") ) {
+		if (phone != null && phone.matches("[0-9]{10}")) {
 			return true;
-			
+
 		} else {
 			return false;
 		}
-			
+	}
+
+	public static boolean isValidId(Integer id) {
+		if (id != null && id >= 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

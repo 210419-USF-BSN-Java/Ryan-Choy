@@ -1,4 +1,4 @@
-package com.revature.shop.services;
+package com.revature.shop.services.dao;
 
 import java.util.List;
 
@@ -7,14 +7,12 @@ import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
 import com.revature.shop.models.Offers;
 
-public interface EmployeeService {
+public interface EmployeeDao {
 	public List<Grimlist> viewGrimoire();
 	public String moveGrimoire(Integer gid, String grimstatus) throws ShopException;
 	public String updateGrimoire(Grimlist grim) throws ShopException;
 	public List<Offers> viewOffers(String offerstatus);
 	public String updateOffers(String offerstatus) throws ShopException;
 	public List<Customer> getPayment();
-	
-	
 
 }

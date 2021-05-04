@@ -3,6 +3,8 @@ package com.revature.shop.services.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.revature.shop.exception.ShopException;
+import com.revature.shop.exception.ShopValidations;
 import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
 import com.revature.shop.models.Offers;
@@ -18,29 +20,33 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<Grimlist> viewGrimoiresSale() {
-		return cd.viewGrimoireSale();
+		return cd.viewGrimoiresSale();
 	}
 
 	@Override
-	public Offers makeOffer(Offers o) {
-		
+	public Offers makeOffer(Offers o) throws ShopException{
+		if(!ShopValidations.isValidBalance(o.getOffer())) {
+			throw new ShopException("Entered offer amount "+ o.getOffer() + " is invalid.");
+		}
 		return cd.makeOffer(o);
 	}
 
-	@Override
-	public User registerCustomer(User u) {
-		return cd.registerCustomer(u);
-		
-	}
+
 
 	@Override
 	public List<Customer> viewOwnedBooks(Integer uid) {
-		
+
 		return cd.viewOwnedBooks(uid);
 	}
 
 	@Override
-	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) {
+	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) throws ShopException {
+		
+		if(!ShopValidations.isValidBalance(pay)) {
+			throw new ShopException("Entered pay " + pay + " is invalid");
+		}
+		
+		
 		return cd.makePayment(pay, payterm, gid);
 	}
 }

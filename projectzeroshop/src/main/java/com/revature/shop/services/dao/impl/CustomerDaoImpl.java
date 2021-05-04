@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.xml.crypto.Data;
 
+import com.revature.shop.exception.ShopException;
 import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
 import com.revature.shop.models.Offers;
@@ -22,8 +23,9 @@ import com.revature.shop.util.DatabaseConnect;
 
 public class CustomerDaoImpl implements CustomerDao {
 
+	
 	@Override
-	public List<Grimlist> viewGrimoireSale() {
+	public List<Grimlist> viewGrimoiresSale(){
 		List<Grimlist> saleGrim = new ArrayList<>();
 		String sql = "SELECT * FROM shop.grimlist WHERE grimstatus = 'For Sale' ORDER BY gid";
 
@@ -51,11 +53,10 @@ public class CustomerDaoImpl implements CustomerDao {
 		return saleGrim;
 	}
 
-	@Override	
-	public Offers makeOffer(Offers o) {
+	@Override
+	public Offers makeOffer(Offers o) throws ShopException {
 		Offers result = new Offers();
 		String sql = "INSERT INTO shop.offer(date,gid,grimname,uid,firstname,lastname,offer,payterm) VALUES (?,?,?,?,?,?,?,?) RETURNING oid,offerstatus";
-		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
 			ps.setString(1, LocalDate.now().toString());
@@ -66,16 +67,16 @@ public class CustomerDaoImpl implements CustomerDao {
 			ps.setString(6, o.getCustomer().getLastname());
 			ps.setBigDecimal(7, o.getOffer());
 			ps.setInt(8, o.getPayterm());
-			
+
 			ResultSet rs = ps.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				result = o;
 				result.setOdate(rs.getString("date"));
 				result.setOid(rs.getInt("oid"));
 				result.setOfferstatus(rs.getString("offerstatus"));
 			}
-			
+
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,45 +85,18 @@ public class CustomerDaoImpl implements CustomerDao {
 		return result;
 	}
 
-	@Override
-	public User registerCustomer(User u) {
-		User customer = null;
-		String sql = "INSERT INTO shop.users (usertype,email,password,firstname,lastname,phonenumber) values('Customer',?,?,?,?,?) RETURNING uid;";
-		try {
-			Connection con = DatabaseConnect.getConnectionFromFile();
-			PreparedStatement ps = con.prepareStatement(sql);
-
-			ps.setString(1, u.getEmail());
-			ps.setString(2, u.getPassword());
-			ps.setString(3, u.getFirstname());
-			ps.setString(4, u.getLastname());
-			ps.setString(4, u.getPhonenumber());
-
-			ResultSet rs = ps.executeQuery();
-
-			if (rs.next()) {
-				customer = u;
-				customer.setUid(rs.getInt("uid"));
-				customer.setUsertype("Customer");
-			}
-
-		} catch (IOException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return customer;
-	}
+	
 
 	@Override
 	public List<Customer> viewOwnedBooks(Integer uid) {
 		List<Customer> ownBook = new ArrayList<>();
-		String sql = "SELECT * FROM shop.customer c JOIN shop.grimlist g ON c.gid = g.gid JOIN shop.users ON c.uid = u.uid WHERE c.uid = ?";
-		
+		String sql = "SELECT * FROM shop.customer c JOIN shop.grimlist g ON c.gid = g.gid JOIN shop.users ON c.uid = u.uid WHERE c.uid = ? GROUP BY c.gid";
+
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
 			ps.setInt(1, uid);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Grimlist book = new Grimlist();
 				User owner = new User();
 				Customer list = new Customer();
@@ -142,26 +116,26 @@ public class CustomerDaoImpl implements CustomerDao {
 				owner.setFirstname(rs.getString("firstname"));
 				owner.setLastname(rs.getString("lastname"));
 				owner.setPhonenumber(rs.getString("phonenumber"));
-				
+
 				list.setDebt(new BigDecimal(rs.getString("debt").replaceAll("[$,]", "")));
 				list.setPayterm(rs.getInt("payterm"));
 				list.setWeekpay(new BigDecimal(rs.getString("weekpay").replaceAll("[$,]", "")));
 				list.setGrimoire(book);
 				list.setOwner(owner);
-				ownBook.add(list);	
+				ownBook.add(list);
 			}
-			
+
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return ownBook;
 	}
 
 	@Override
-	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) {
-		
+	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) throws ShopException{
+
 		String sql = "UPDATE shop.customer SET (debt,payterm) = (?,?) WHERE gid = ?";
 		Integer result = null;
 		try {
@@ -169,20 +143,20 @@ public class CustomerDaoImpl implements CustomerDao {
 			ps.setBigDecimal(1, pay);
 			ps.setInt(2, payterm);
 			ps.setInt(3, gid);
-			
-			 result = ps.executeUpdate();
-			
-			
+
+			result = ps.executeUpdate();
+
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(result != 0) {
-		return "Payment successful!";
+
+		if (result != 0) {
+			return "Payment successful! Your debt is now" + pay ;
 		} else {
-			return "Payment failed!";
+			return "Payment failed! Please try again.";
 		}
 	}
+
 
 }

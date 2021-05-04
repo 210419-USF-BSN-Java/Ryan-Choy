@@ -24,16 +24,33 @@ public class ShopFront {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-//		File file = new File(
-//				"C:\\Users\\Ryan\\Desktop\\Revature\\USF_BSN_Java\\Assignments\\projectzeroshop\\src\\main\\resources\\test.txt");
-//		Scanner sc = new Scanner(file);
-//
-//		while (sc.hasNextLine()) {
-//			System.out.println(sc.nextLine());
-//		}
-		CustomerService cs = new CustomerServiceImpl();
-		
+		File file = new File(
+				"C:\\Users\\Ryan\\Desktop\\Revature\\USF_BSN_Java\\Assignments\\projectzeroshop\\src\\main\\resources\\test.txt");
+		Scanner sc = new Scanner(file);
+
+		while (sc.hasNextLine()) {
+			System.out.println(sc.nextLine());
+		}
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter 1");
+		Integer login = Integer.parseInt(scan.nextLine());
+		ShopUser su = new ShopUser();
+		switch (login) {
+		case 1:
+			System.out.println("Enter 1");
+			int choice = Integer.parseInt(scan.nextLine());
+			su.login(choice);
+			break;
+		case 2:
+			
+			break;
+
+		default:
+			break;
+		}
+		
+		
+		CustomerService cs = new CustomerServiceImpl();
 		User u = new User();
 	
 //		System.out.println("enter email");
