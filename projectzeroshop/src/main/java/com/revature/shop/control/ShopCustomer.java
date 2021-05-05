@@ -77,7 +77,7 @@ public class ShopCustomer {
 					if (nBid != null) {
 						System.out.println("Offer successfully made! Down below are the details.");
 						System.out.println(nBid);
-						cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has made an offer of $"+bid.getOffer()+" over"+ bid.getPayterm()+" weeks for "+ bid.getGrimoire().getGrimname());
+						cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has made an offer of $"+bid.getOffer()+" over "+ bid.getPayterm()+" weeks for "+ bid.getGrimoire().getGrimname());
 
 					} else {
 						System.out.println("Sorry, something went wrong, please try again or do something else!");

@@ -198,6 +198,12 @@ public class ShopEmployee {
 						System.out.println("Book successfully transfered ownership!");
 						System.out.println(confirm);
 					}
+					try {
+						es.moveGrimoire(c.getGrimoire().getGid(), "Owned");
+					} catch (ShopException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has accepted an offer.");
 
 					
