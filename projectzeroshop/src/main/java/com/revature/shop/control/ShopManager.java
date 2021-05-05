@@ -51,7 +51,7 @@ public class ShopManager {
 				case "y":
 					System.out.println("Which employee do you wish to fire?");
 					int mFire = Integer.parseInt(mScan.nextLine());
-					mu = viewEmp.get(mFire);
+					mu = viewEmp.get((mFire-1));
 					
 					System.out.println(ms.fireEmployee(mu.getUid()));
 					mLog.info("Manager "+ u.getFirstname()+" "+u.getLastname()+" has fired an employee.");

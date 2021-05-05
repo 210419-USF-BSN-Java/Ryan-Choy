@@ -105,7 +105,7 @@ public class ShopCustomer {
 				switch (cScan.nextLine()) {
 				case "y":
 					System.out.println("Which grimoire you like to make a payment to?");
-					own = cList.get(Integer.parseInt(cScan.nextLine()));
+					own = cList.get((Integer.parseInt(cScan.nextLine())-1));
 					System.out.println("How much do you want to pay? Your current debt is $"+ own.getDebt()+" and you have "+ own.getPayterm()+" weeks left to pay it off.");
 					BigDecimal pay = new BigDecimal(cScan.nextLine());
 					

@@ -62,7 +62,7 @@ public class ShopEmployee {
 					case 1:
 						System.out.println("Which grimoire that you  want to move?");
 						int eMove = Integer.parseInt(eScan.nextLine());
-						b = eBook.get(eMove);
+						b = eBook.get((eMove-1));
 
 						System.out.println("The status of the grimoire is " + b.getGrimstatus());
 						System.out.println("1] Make it for sale\n2] Move it to storage\n3] Cancel");
@@ -100,7 +100,7 @@ public class ShopEmployee {
 					case 2:
 						System.out.println("Which grimoire you want to edit?");
 						int eEdit = Integer.parseInt(eScan.nextLine());
-						b = eBook.get(eEdit);
+						b = eBook.get((eEdit-1));
 						boolean editFlag = true;
 						do {
 						System.out.println("Current grimoire details: "+ b);
@@ -181,7 +181,7 @@ public class ShopEmployee {
 				case "y":
 					System.out.println("Which one do you want to accept?");
 					int offChoice = Integer.parseInt(eScan.nextLine());
-					o = offList.get(offChoice);
+					o = offList.get((offChoice-1));
 					
 					System.out.println(es.acceptOffer(o.getOid()));
 					System.out.println(es.rejectRest(o.getGrimoire().getGid()));
