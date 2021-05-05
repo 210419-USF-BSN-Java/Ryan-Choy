@@ -246,7 +246,7 @@ INSERT INTO shop.offer VALUES ('2000-10-08', 4, 2, 'test', 2, 'test', 'test', '$
 INSERT INTO shop.users VALUES (3, 'Employee', 'ryan@gmail.com', 'password', 'Ryan', 'Boi', '4862414487');
 INSERT INTO shop.users VALUES (1, 'Customer', 'bob@gmail.com', 'bobobobo', 'Bob', 'Dob', '1234567891');
 INSERT INTO shop.users VALUES (2, 'Customer', 'dab@gmail.com', 'dadododo', 'Dab', 'Sab', '4576652144');
-
+insert into shop.users values (4, 'Manager', 'kevin@gmail.com', 'kevikevi', 'Kevin', 'Big', '4563217777');
 
 --
 -- TOC entry 2854 (class 0 OID 0)
