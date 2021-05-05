@@ -3,6 +3,7 @@ package com.revature.shop.services.impl;
 import java.util.List;
 
 import com.revature.shop.exception.ShopException;
+import com.revature.shop.exception.ShopValidations;
 import com.revature.shop.models.Offers;
 import com.revature.shop.models.User;
 import com.revature.shop.services.ManagerService;
@@ -21,7 +22,21 @@ public class ManagerServiceImpl implements ManagerService {
 
 	@Override
 	public User addEmployee(User u) throws ShopException {
-		// TODO Auto-generated method stub
+		if(!ShopValidations.isValidName(u.getFirstname())) {
+			throw new ShopException("Entered first name "+u.getFirstname() + " is invalid.");
+		}
+		if(!ShopValidations.isValidName(u.getLastname())) {
+			throw new ShopException("Entered last name "+u.getLastname() + " is invalid.");
+		}
+		if(!ShopValidations.isValidEmail(u.getEmail())) {
+			throw new ShopException("Entered email "+u.getFirstname() + " is invalid.");
+		}
+		if(!ShopValidations.isValidPassword(u.getPassword())) {
+			throw new ShopException("Entered password "+u.getPassword() + " is invalid.");
+		}
+		if(!ShopValidations.isValidPhone(u.getPhonenumber())) {
+			throw new ShopException("Entered phone number "+u.getPhonenumber()+" is invalid");
+		}
 		return md.addEmployee(u);
 	}
 

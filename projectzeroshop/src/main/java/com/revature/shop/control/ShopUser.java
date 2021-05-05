@@ -19,7 +19,7 @@ public class ShopUser {
 		switch (input) {
 		case 1:
 
-			usertype = "Employee";
+			usertype = "Customer";
 			System.out.println("Enter email");
 			email = userscan.nextLine();
 			System.out.println("Enter password");
@@ -33,8 +33,7 @@ public class ShopUser {
 			System.out.println("Welcome " + custom.getFirstname()+ " "+ custom.getLastname() );
 			return custom;
 		case 2:
-		
-			 usertype = "Customer";
+			 usertype = "Employee";
 			System.out.println("Enter email");
 			 email = userscan.nextLine();
 			System.out.println("Enter password");
@@ -47,6 +46,9 @@ public class ShopUser {
 			}
 			System.out.println("Welcome " + custom.getFirstname()+ " "+ custom.getLastname() );
 			return custom;
+			
+		case 3:
+			break;
 
 		default:
 			System.out.println("Invalid input");

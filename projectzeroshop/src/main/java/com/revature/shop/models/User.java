@@ -30,8 +30,8 @@ public class User implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", usertype=" + usertype + ", email=" + email + ", password=" + password
-				+ ", firstname=" + firstname + ", lastname=" + lastname + ", phonenumber=" + phonenumber + "]";
+		return "User Id: " + uid + ", Type: " + usertype + ", Email: " + email 
+				+ ", Name: " + firstname + " " + lastname + ", Phone number: " + phonenumber + "]";
 	}
 	public Integer getUid() {
 		return uid;

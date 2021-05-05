@@ -1,0 +1,4 @@
+What would you like to do customer?
+1] View grimoires for sale and make an offer
+2] View owned books and make payments
+3] Log out

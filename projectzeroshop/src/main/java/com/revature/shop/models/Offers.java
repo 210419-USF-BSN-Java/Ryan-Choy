@@ -34,8 +34,8 @@ public class Offers implements Serializable  {
 	}
 	@Override
 	public String toString() {
-		return "Offers [oid=" + oid + ", grimoire=" + grimoire + ", customer=" + customer + ", offer=" + offer
-				+ ", payterm=" + payterm + ", offerstatus=" + offerstatus + "]";
+		return odate + " Offer Id: " + oid + " Grimoire details: " + grimoire + ", Bidder details: " + customer
+				+ ", Offered amount: $" + offer + ", Pay term: " + payterm + " weeks, Status" + offerstatus;
 	}
 	@Override
 	public int hashCode() {
@@ -43,6 +43,7 @@ public class Offers implements Serializable  {
 		int result = 1;
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((grimoire == null) ? 0 : grimoire.hashCode());
+		result = prime * result + ((odate == null) ? 0 : odate.hashCode());
 		result = prime * result + ((offer == null) ? 0 : offer.hashCode());
 		result = prime * result + ((offerstatus == null) ? 0 : offerstatus.hashCode());
 		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
@@ -67,6 +68,11 @@ public class Offers implements Serializable  {
 			if (other.grimoire != null)
 				return false;
 		} else if (!grimoire.equals(other.grimoire))
+			return false;
+		if (odate == null) {
+			if (other.odate != null)
+				return false;
+		} else if (!odate.equals(other.odate))
 			return false;
 		if (offer == null) {
 			if (other.offer != null)

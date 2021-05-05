@@ -3,6 +3,7 @@ package com.revature.shop.services.impl;
 import java.util.List;
 
 import com.revature.shop.exception.ShopException;
+import com.revature.shop.exception.ShopValidations;
 import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
 import com.revature.shop.models.Offers;
@@ -22,19 +23,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public String moveGrimoire(Integer gid, String grimstatus) throws ShopException {
-		// TODO Auto-generated method stub
+
 		return ed.moveGrimoire(gid, grimstatus);
 	}
 
 	@Override
 	public String updateGrimoire(Grimlist grim) throws ShopException {
-		// TODO Auto-generated method stub
+		if(!ShopValidations.isValidBalance(grim.getBaseprice())) {
+			throw new ShopException("Entered base price "+ grim.getBaseprice()+ "is invalid");
+		}
 		return ed.updateGrimoire(grim);
 	}
 
 	@Override
 	public List<Offers> viewOffers(String offerstatus) {
-		// TODO Auto-generated method stub
 		return ed.viewOffers(offerstatus);
 	}
 
@@ -54,6 +56,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public String rejectRest(Integer gid) {
 		// TODO Auto-generated method stub
 		return ed.rejectRest(gid);
+	}
+
+
+
+	@Override
+	public Customer addOwner(Customer c) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

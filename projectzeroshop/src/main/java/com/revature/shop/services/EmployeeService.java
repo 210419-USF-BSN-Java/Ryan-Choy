@@ -13,6 +13,7 @@ public interface EmployeeService {
 	public String updateGrimoire(Grimlist grim) throws ShopException;
 	public List<Offers> viewOffers(String offerstatus);
 	public String acceptOffer(Integer oid);
+	public Customer addOwner(Customer c);
 	public String rejectRest(Integer gid);
 	public List<Customer> getPayment();
 	

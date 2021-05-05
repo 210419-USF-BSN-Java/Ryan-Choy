@@ -166,9 +166,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setInt(1, oid);
 			
 			if(ps.executeUpdate() >= 1) {
-				result = "Update successful!";
+				result = "Offer successfully accepted!";
 			} else {
-				result = "Update failed";
+				result = "Something went wrong!";
 			}
 			
 		} catch (SQLException | IOException e) {
@@ -188,9 +188,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setInt(1, gid);
 			
 			if(ps.executeUpdate() >= 1) {
-				result = "Update successful!";
+				result = "All the other offers have been successfully rejected!";
 			} else {
-				result = "Update failed!";
+				result = "Rejection failed!";
 			}
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
@@ -239,6 +239,34 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		
 		return payList;
+	}
+
+	@Override
+	public Customer addOwner(Customer c) {
+		Customer nOwn = new Customer();
+		String sql = "INSERT INTO shop.customer (gid,grimname,uid,debt,payterm,weekpay) VALUES (?,?,?,?,?,?)";
+		
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
+			
+			ps.setInt(1, c.getGrimoire().getGid());
+			ps.setString(2, c.getGrimoire().getGrimname());
+			ps.setInt(3, c.getOwner().getUid());
+			ps.setBigDecimal(4, c.getDebt());
+			ps.setInt(5, c.getPayterm());
+			ps.setBigDecimal(6, c.getWeekpay());
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				nOwn = c;
+			}
+			
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return nOwn;
 	}
 
 

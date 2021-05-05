@@ -80,5 +80,9 @@ public class ShopValidations {
 			return false;
 		}
 	}
+	
+	public static boolean isValidBookStatus(String grimstatus) {
+		return true;
+	}
 
 }
