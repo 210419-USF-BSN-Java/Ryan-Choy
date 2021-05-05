@@ -13,6 +13,6 @@ public interface CustomerService {
 	public List<Grimlist> viewGrimoiresSale();
 	public Offers makeOffer(Offers o) throws ShopException;
 	public List<Customer> viewOwnedBooks(Integer uid);
-	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) throws ShopException;
+	public String makePayment(BigDecimal pay, Integer payterm, BigDecimal weekpay, Integer gid) throws ShopException;
 
 }

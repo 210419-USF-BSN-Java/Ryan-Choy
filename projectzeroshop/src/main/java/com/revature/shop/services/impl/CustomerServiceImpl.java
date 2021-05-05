@@ -40,13 +40,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) throws ShopException {
+	public String makePayment(BigDecimal pay, Integer payterm, BigDecimal weekpay, Integer gid) throws ShopException {
 		
 		if(!ShopValidations.isValidBalance(pay)) {
 			throw new ShopException("Entered pay " + pay + " is invalid");
 		}
 		
 		
-		return cd.makePayment(pay, payterm, gid);
+		return cd.makePayment(pay, payterm,weekpay, gid);
 	}
 }

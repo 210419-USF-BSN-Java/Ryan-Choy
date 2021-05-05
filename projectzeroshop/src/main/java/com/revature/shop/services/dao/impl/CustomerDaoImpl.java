@@ -134,15 +134,16 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public String makePayment(BigDecimal pay, Integer payterm, Integer gid) throws ShopException{
+	public String makePayment(BigDecimal pay, Integer payterm, BigDecimal weekpay, Integer gid) throws ShopException{
 
-		String sql = "UPDATE shop.customer SET (debt,payterm) = (?,?) WHERE gid = ?";
+		String sql = "UPDATE shop.customer SET (debt,payterm,weekpay) = (?,?,?) WHERE gid = ?";
 		Integer result = null;
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
 			ps.setBigDecimal(1, pay);
 			ps.setInt(2, payterm);
-			ps.setInt(3, gid);
+			ps.setBigDecimal(3, weekpay);
+			ps.setInt(4, gid);
 
 			result = ps.executeUpdate();
 
@@ -152,7 +153,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 
 		if (result != 0) {
-			return "Payment successful! Your debt is now" + pay ;
+			return "Payment successful! Your debt is now $" + pay+". You have"+ payterm+" weeks left on your payterm. Your weekly pay is $"+ weekpay ;
 		} else {
 			return "Payment failed! Please try again.";
 		}

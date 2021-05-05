@@ -104,8 +104,9 @@ public class ShopCustomer {
 					if(change.compareTo(new BigDecimal(0)) <= 0) {
 						change = new BigDecimal(0);
 					}
+					BigDecimal week = change.divide(new BigDecimal((own.getPayterm()-1)),2,RoundingMode.CEILING);
 					try {
-						System.out.println(cs.makePayment(change, (own.getPayterm()-1), own.getGrimoire().getGid()));
+						System.out.println(cs.makePayment(change, (own.getPayterm()-1),week, own.getGrimoire().getGid()));
 					} catch (ShopException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
