@@ -4,3 +4,15 @@
 {INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has logged in     May-05-2021 Wednesday PDT 07:32:23
 {INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has logged off.     May-05-2021 Wednesday PDT 07:32:26
 {INFO} -  [com.revature.shop.control.ShopFront]   -     Program closed     May-05-2021 Wednesday PDT 07:32:28
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Program closed     May-05-2021 Wednesday PDT 07:46:31
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Program closed     May-05-2021 Wednesday PDT 07:51:04
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Bob Dob has logged in     May-05-2021 Wednesday PDT 07:51:32
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Bob Dob has viewed grimoires for sale.     May-05-2021 Wednesday PDT 07:51:35
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Bob Dob has logged out.     May-05-2021 Wednesday PDT 07:51:46
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has logged in     May-05-2021 Wednesday PDT 07:53:04
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has viewed the grimoires.     May-05-2021 Wednesday PDT 07:53:07
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has logged off.     May-05-2021 Wednesday PDT 07:53:22
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has logged in     May-05-2021 Wednesday PDT 07:53:34
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has viewed all employees     May-05-2021 Wednesday PDT 07:53:36
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has logged off.     May-05-2021 Wednesday PDT 07:53:40
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Program closed     May-05-2021 Wednesday PDT 07:53:42

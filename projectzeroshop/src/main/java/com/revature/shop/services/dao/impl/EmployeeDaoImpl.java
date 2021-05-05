@@ -21,7 +21,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public List<Grimlist> viewGrimoire() {
 		List<Grimlist> booklist = new ArrayList<>();
-		String sql = "SELECT * FROM shop.grimlist";
+		String sql = "SELECT * FROM shop.grimlist ORDER BY gid";
 		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);

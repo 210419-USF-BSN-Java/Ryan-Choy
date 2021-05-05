@@ -33,7 +33,7 @@ public class Grimlist implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Id: " + gid + ", Title: " + grimname + ", School: " + grimschool + ", Author: "
+		return "Grimoire Id: " + gid + ", Title: " + grimname + ", School: " + grimschool + ", Author: "
 				+ grimauthor + ", Base price: $" + baseprice + ", Condition: " + grimcondition + ", Status: "
 				+ grimstatus + ", Note: " + grimnote;
 	}
