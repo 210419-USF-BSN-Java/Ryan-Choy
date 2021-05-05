@@ -5,7 +5,7 @@
 -- Dumped from database version 10.16
 -- Dumped by pg_dump version 10.16
 
--- Started on 2021-05-05 07:25:24
+-- Started on 2021-05-05 07:10:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -246,12 +246,7 @@ INSERT INTO shop.offer VALUES ('2000-10-08', 4, 2, 'test', 2, 'test', 'test', '$
 INSERT INTO shop.users VALUES (3, 'Employee', 'ryan@gmail.com', 'password', 'Ryan', 'Boi', '4862414487');
 INSERT INTO shop.users VALUES (1, 'Customer', 'bob@gmail.com', 'bobobobo', 'Bob', 'Dob', '1234567891');
 INSERT INTO shop.users VALUES (2, 'Customer', 'dab@gmail.com', 'dadododo', 'Dab', 'Sab', '4576652144');
-<<<<<<< HEAD:projectzeroshop/dump-postgres-202105050725.sql
-INSERT INTO shop.users VALUES (4, 'Manager', 'kevin@gmail.com', 'kevikevi', 'Kevin', 'Big', '4563217777');
 
-=======
-insert into shop.users values (4, 'Manager', 'kevin@gmail.com', 'kevikevi', 'Kevin', 'Big', '4563217777');
->>>>>>> 2eea27840f07b1aeeb931cb935d1eb31c05c825c:projectzeroshop/dump-postgres-202105050710.sql
 
 --
 -- TOC entry 2854 (class 0 OID 0)
@@ -277,7 +272,7 @@ SELECT pg_catalog.setval('shop.shop_gid_seq', 6, true);
 -- Name: users_uid_seq; Type: SEQUENCE SET; Schema: shop; Owner: postgres
 --
 
-SELECT pg_catalog.setval('shop.users_uid_seq', 4, true);
+SELECT pg_catalog.setval('shop.users_uid_seq', 4, false);
 
 
 --
@@ -352,7 +347,7 @@ ALTER TABLE ONLY shop.offer
     ADD CONSTRAINT offer_fk_1 FOREIGN KEY (gid) REFERENCES shop.grimlist(gid);
 
 
--- Completed on 2021-05-05 07:25:24
+-- Completed on 2021-05-05 07:10:51
 
 --
 -- PostgreSQL database dump complete
