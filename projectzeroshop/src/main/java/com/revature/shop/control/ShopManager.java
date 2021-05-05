@@ -108,6 +108,12 @@ public class ShopManager {
 				mLog.info("Manager "+ u.getFirstname()+" "+u.getLastname()+" has viewed the offer history");
 
 				break;
+				
+			case 4:
+				System.out.println("Logging off...");
+				mLog.info("Manager "+ u.getFirstname()+" "+u.getLastname()+" has logged off.");
+
+				mFlag = false;
 
 			default:
 				break;
