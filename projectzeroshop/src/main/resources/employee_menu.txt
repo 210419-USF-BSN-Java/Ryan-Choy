@@ -2,4 +2,5 @@ What you would like to do employee?
 1] View, move, or edit grimoires
 2] View or accept offers
 3] Get list of current debts
-4] Log off
+4] Add a grimoire
+5] Log off

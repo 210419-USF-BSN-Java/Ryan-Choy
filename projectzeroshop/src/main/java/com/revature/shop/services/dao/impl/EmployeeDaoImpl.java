@@ -269,6 +269,36 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return nOwn;
 	}
 
+	@Override
+	public Grimlist addGrimoire(Grimlist grim) {
+		Grimlist res = new Grimlist();
+		String sql = "INSERT INTO shop.grimlist (grimname,grimcondition,grimschool,grimstatus,grimnote,baseprice, grimauthor) VALUES (?,?,?,?,?,?,?) RETURNING gid;";
+		
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);
+			
+			ps.setString(1, grim.getGrimname());
+			ps.setString(2, grim.getGrimcondition());
+			ps.setString(3, grim.getGrimschool());
+			ps.setString(4, grim.getGrimstatus());
+			ps.setString(5, grim.getGrimnote());
+			ps.setBigDecimal(6, grim.getBaseprice());
+			ps.setString(7, grim.getGrimauthor());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				res = grim;
+				res.setGid(rs.getInt("gid"));
+			}
+		} catch (SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 
 
 }

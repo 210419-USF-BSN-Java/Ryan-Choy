@@ -11,6 +11,7 @@ public interface EmployeeService {
 	public List<Grimlist> viewGrimoire();
 	public String moveGrimoire(Integer gid, String grimstatus) throws ShopException;
 	public String updateGrimoire(Grimlist grim) throws ShopException;
+	public Grimlist addGrimoire(Grimlist grim);
 	public List<Offers> viewOffers(String offerstatus);
 	public String acceptOffer(Integer oid);
 	public Customer addOwner(Customer c);

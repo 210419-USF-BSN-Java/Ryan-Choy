@@ -63,7 +63,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Customer addOwner(Customer c) {
 		// TODO Auto-generated method stub
-		return null;
+		return ed.addOwner(c);
+	}
+
+	@Override
+	public Grimlist addGrimoire(Grimlist grim) {
+		// TODO Auto-generated method stub
+		return ed.addGrimoire(grim);
 	}
 
 }

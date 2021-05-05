@@ -222,6 +222,34 @@ public class ShopEmployee {
 
 				break;
 			case 4:
+				Grimlist nBook = new Grimlist();
+				System.out.println("Enter the following details for the new grimoire");
+				System.out.println("Enter the title");
+				b.setGrimname(eScan.nextLine());
+				System.out.println("Enter the school");
+				b.setGrimschool(eScan.nextLine());
+				System.out.println("Enter the author");
+				b.setGrimauthor(eScan.nextLine());
+				System.out.println("Enter the condition");
+				b.setGrimcondition(eScan.nextLine());
+				System.out.println("Enter the status");
+				b.setGrimstatus(eScan.nextLine());
+				System.out.println("Enter the note");
+				b.setGrimnote(eScan.nextLine());
+				System.out.println("Enter the base price");
+				b.setBaseprice(new BigDecimal(eScan.nextLine()));
+				
+				nBook = es.addGrimoire(b);
+				
+				if(nBook.getGid() != null) {
+					System.out.println("Grimoire successfully added!");
+					System.out.println(nBook);
+					eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has added a new grimoire.");
+
+				}
+				break;
+			
+			case 5:
 				System.out.println("Logging off...");
 				eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has logged off.");
 				eFlag = false;
