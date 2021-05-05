@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.revature.shop.exception.ShopException;
 import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
 import com.revature.shop.models.Offers;
@@ -22,12 +23,13 @@ import com.revature.shop.services.dao.impl.CustomerDaoImpl;
 import com.revature.shop.services.impl.CustomerServiceImpl;
 
 public class ShopFront {
-	// private static Logger log = Logger.getLogger(ShopFront.class);
+	 private static Logger sLog = Logger.getLogger(ShopFront.class);
 
 	public static void main(String[] args) throws FileNotFoundException {
 		ShopUser user = new ShopUser();
 		ShopCustomer customer = new ShopCustomer();
 		ShopEmployee employee = new ShopEmployee();
+		ShopManager manager = new ShopManager();
 		
 		User u = new User();
 		Customer c = new Customer();
@@ -50,7 +52,7 @@ public class ShopFront {
 		
 		switch (log) {
 		case 1:
-			System.out.println("Log in as a \n1] Customer\n2] Employee\nor\n3] Cancel");
+			System.out.println("Log in as a \n1] Customer\n2] Employee\n3] Manager\nor\n4] Cancel");
 			u = user.login(Integer.parseInt(scan.nextLine()));
 			String type = "";
 			if(u != null) {
@@ -60,13 +62,20 @@ public class ShopFront {
 			}
 			switch (type) {
 			case "Customer":
+				sLog.info("Customer "+ u.getFirstname()+" "+u.getLastname()+" has logged in");
 				customer.customerMenu(u);
 				break;
 			case "Employee":
 				
+				sLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has logged in");
+
+				employee.employeeMenu(u);
+				
 				break;
 			case "Manager":
-				
+				sLog.info("Manager "+ u.getFirstname()+" "+u.getLastname()+" has logged in");
+
+				manager.employeeMenu(u);
 				break;
 
 			default:
@@ -87,16 +96,23 @@ public class ShopFront {
 			System.out.println("Enter your 10 digit phone number");
 			u.setPhonenumber(scan.nextLine());
 			
-			if(user.register(u) != null) {
-				System.out.println("Registration successful! Welcome customer "+ u.getFirstname() + " "+ u.getLastname()+"!");
-			} else {
-				System.out.println("Registration failed! Please try again.");
+			try {
+				if(user.register(u) != null) {
+					System.out.println("Registration successful! Welcome customer "+ u.getFirstname() + " "+ u.getLastname()+"!");
+					sLog.info("User "+ u.getFirstname()+" "+u.getLastname()+" has registered as a customer.");
+				} else {
+					System.out.println("Registration failed! Please try again.");
+				}
+			} catch (ShopException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			
 			break;
 		case 3:
 			System.out.println("Thank you for shopping at Grim's! Closing program...");
+			sLog.info("Program closed");
 			app = false;
 			break;
 

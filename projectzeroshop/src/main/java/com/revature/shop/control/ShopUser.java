@@ -2,13 +2,16 @@ package com.revature.shop.control;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.revature.shop.exception.ShopException;
 import com.revature.shop.models.User;
 import com.revature.shop.services.UserService;
 import com.revature.shop.services.impl.UserServiceImpl;
 
 public class ShopUser {
-	
+	 private static Logger uLog = Logger.getLogger(ShopFront.class);
+
 	public User login(int input) {
 		UserService us = new UserServiceImpl();
 		Scanner userscan = new Scanner(System.in);
@@ -48,6 +51,21 @@ public class ShopUser {
 			return custom;
 			
 		case 3:
+			 usertype = "Manager";
+			System.out.println("Enter email");
+			 email = userscan.nextLine();
+			System.out.println("Enter password");
+			 password = userscan.nextLine();
+			try {
+				 custom = us.logIn(usertype, email, password);
+			} catch (ShopException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Welcome " + custom.getFirstname()+ " "+ custom.getLastname() );
+			return custom;
+			
+		case 4:
 			break;
 
 		default:
@@ -57,11 +75,13 @@ public class ShopUser {
 		return null;
 	}
 
-	public String register (User u) {
-		
-		
-		
-		return " ";
+	public User register (User u) throws ShopException {
+		UserService us = new UserServiceImpl();
+
+		User nCus = new User();
+		nCus = us.registerCustomer(u);
+
+		return nCus;
 	}
 	
 }

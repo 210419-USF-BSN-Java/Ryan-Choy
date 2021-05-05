@@ -102,7 +102,7 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public List<Offers> viewOfferHistory() {
 		List<Offers> offHist = new ArrayList<>();
-		String sql = "SELECT * from shop.offer o JOIN shop.grimlist g on o.gid = g.gid JOIN shop.users u ON o.uid = u.uid ORDER BY oid";
+		String sql = "SELECT * from shop.offer o JOIN shop.grimlist g on o.gid = g.gid JOIN shop.users u ON o.uid = u.uid ORDER BY date DESC";
 		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnectionFromFile().prepareStatement(sql);

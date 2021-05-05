@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.revature.shop.exception.ShopException;
 import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
@@ -17,6 +19,7 @@ import com.revature.shop.services.CustomerService;
 import com.revature.shop.services.impl.CustomerServiceImpl;
 
 public class ShopCustomer {
+	 private static Logger cLog = Logger.getLogger(ShopFront.class);
 
 	public void customerMenu(User cm) throws FileNotFoundException {
 		CustomerService cs = new CustomerServiceImpl();
@@ -45,7 +48,10 @@ public class ShopCustomer {
 				bList = cs.viewGrimoiresSale();
 				for (int i = 0; i < bList.size(); i++) {
 					System.out.println((i + 1) + "] " + bList.get(i));
+					
 				}
+				cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has viewed grimoires for sale.");
+
 				System.out.println("Would you like to make an offer to a grimoire?[y/n]?");
 
 				switch (cScan.nextLine()) {
@@ -71,6 +77,8 @@ public class ShopCustomer {
 					if (nBid != null) {
 						System.out.println("Offer successfully made! Down below are the details.");
 						System.out.println(nBid);
+						cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has made an offer of $"+bid.getOffer()+" over"+ bid.getPayterm()+" weeks for "+ bid.getGrimoire().getGrimname());
+
 					} else {
 						System.out.println("Sorry, something went wrong, please try again or do something else!");
 					}
@@ -90,6 +98,8 @@ public class ShopCustomer {
 				for(int i = 0; i < cList.size();i++) {
 					System.out.println((i+1)+"] "+ cList.get(i));
 				} 
+				cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has viewed their owned grimoires.");
+
 				System.out.println("Would you like to make a payment? [y/n]");
 				
 				switch (cScan.nextLine()) {
@@ -107,6 +117,8 @@ public class ShopCustomer {
 					BigDecimal week = change.divide(new BigDecimal((own.getPayterm()-1)),2,RoundingMode.CEILING);
 					try {
 						System.out.println(cs.makePayment(change, (own.getPayterm()-1),week, own.getGrimoire().getGid()));
+						cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has made a payment of $"+ change+" to "+own.getGrimoire().getGrimname());
+
 					} catch (ShopException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -126,6 +138,8 @@ public class ShopCustomer {
 				break;
 			case 3:
 				System.out.println("Logging out...");
+				cLog.info("Customer "+ cm.getFirstname()+" "+cm.getLastname()+" has logged out.");
+
 				cFlag = false;
 				break;
 

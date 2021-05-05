@@ -1,0 +1,4 @@
+What would you like to do manager?
+1] View Employees and choose who to fire.
+2] Add a new employee.
+3] View the history of all offers

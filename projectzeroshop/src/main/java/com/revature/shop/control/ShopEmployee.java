@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.revature.shop.exception.ShopException;
 import com.revature.shop.models.Customer;
 import com.revature.shop.models.Grimlist;
@@ -18,6 +20,8 @@ import com.revature.shop.services.EmployeeService;
 import com.revature.shop.services.impl.EmployeeServiceImpl;
 
 public class ShopEmployee {
+	 private static Logger eLog = Logger.getLogger(ShopFront.class);
+
 	public void employeeMenu(User u) throws FileNotFoundException {
 		EmployeeService es = new EmployeeServiceImpl();
 
@@ -46,6 +50,8 @@ public class ShopEmployee {
 				for (int i = 0; i < eBook.size(); i++) {
 					System.out.println((i + 1) + "] " + eBook.get(i));
 				}
+				eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has viewed the grimoires.");
+
 				System.out.println("Do you wish to move or edit the grimoires?[y/n]");
 
 				switch (eScan.nextLine()) {
@@ -64,6 +70,8 @@ public class ShopEmployee {
 						case 1:
 							try {
 								System.out.println(es.moveGrimoire(b.getGid(), "For Sale"));
+								eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has moved a grimoire for sale.");
+
 							} catch (ShopException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -72,6 +80,8 @@ public class ShopEmployee {
 						case 2:
 							try {
 								System.out.println(es.moveGrimoire(b.getGid(), "In Storage"));
+								eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has moved a grimoire to storage.");
+
 							} catch (ShopException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -127,6 +137,8 @@ public class ShopEmployee {
 						case 7:
 							try {
 								es.updateGrimoire(b);
+								eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has edited a grimoire.");
+
 							} catch (ShopException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -163,6 +175,7 @@ public class ShopEmployee {
 				for(int i = 0; i < offList.size(); i++) {
 					System.out.println((i+1)+"] "+ offList.get(i));
 				}
+				eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has viewed pending offers.");
 				System.out.println("Would you like to accept any offers?[y/n]");
 				switch(eScan.nextLine()) {
 				case "y":
@@ -185,6 +198,8 @@ public class ShopEmployee {
 						System.out.println("Book successfully transfered ownership!");
 						System.out.println(confirm);
 					}
+					eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has accepted an offer.");
+
 					
 					break;
 				case "n":
@@ -203,9 +218,12 @@ public class ShopEmployee {
 				for(int i = 0;i < debtList.size();i++) {
 					System.out.println((i+1)+"] "+ debtList.get(i));
 				}
+				eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has viewed payments.");
+
 				break;
 			case 4:
 				System.out.println("Logging off...");
+				eLog.info("Employee "+ u.getFirstname()+" "+u.getLastname()+" has logged off.");
 				eFlag = false;
 				break;
 			default:
