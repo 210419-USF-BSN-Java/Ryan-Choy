@@ -1,0 +1,112 @@
+package com.revature.models;
+
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class Reimbursement {
+	private Integer reimbId;
+	private BigDecimal amount;
+	private Date dateSubmitted;
+	private Date dateResolved;
+	private String description;
+	private InputStream receipt;
+	
+	//user id
+	private Integer author;
+	
+	//manager id
+	private Integer resolver;
+	private Integer statusId;
+	private Integer typeId;
+	public Reimbursement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Reimbursement(Integer reimbId, BigDecimal amount, Date dateSubmitted, Date dateResolved, String description,
+			InputStream receipt, Integer author, Integer resolver, Integer statusId, Integer typeId) {
+		super();
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.dateSubmitted = dateSubmitted;
+		this.dateResolved = dateResolved;
+		this.description = description;
+		this.receipt = receipt;
+		this.author = author;
+		this.resolver = resolver;
+		this.statusId = statusId;
+		this.typeId = typeId;
+	}
+	@Override
+	public String toString() {
+		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", dateSubmitted=" + dateSubmitted
+				+ ", dateResolved=" + dateResolved + ", description=" + description + ", receipt=" + receipt
+				+ ", author=" + author + ", resolver=" + resolver + ", statusId=" + statusId + ", typeId=" + typeId
+				+ "]";
+	}
+	public Integer getReimbId() {
+		return reimbId;
+	}
+	public void setReimbId(Integer reimbId) {
+		this.reimbId = reimbId;
+	}
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+	public Date getDateSubmitted() {
+		return dateSubmitted;
+	}
+	public void setDateSubmitted(Date dateSubmitted) {
+		this.dateSubmitted = dateSubmitted;
+	}
+	public Date getDateResolved() {
+		return dateResolved;
+	}
+	public void setDateResolved(Date dateResolved) {
+		this.dateResolved = dateResolved;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public InputStream getReceipt() {
+		return receipt;
+	}
+	public void setReceipt(InputStream receipt) {
+		this.receipt = receipt;
+	}
+	public Integer getAuthor() {
+		return author;
+	}
+	public void setAuthor(Integer author) {
+		this.author = author;
+	}
+	public Integer getResolver() {
+		return resolver;
+	}
+	public void setResolver(Integer resolver) {
+		this.resolver = resolver;
+	}
+	public Integer getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
+	}
+	public Integer getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
+	}
+
+	
+	
+
+}
+	
