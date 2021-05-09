@@ -31,3 +31,20 @@
 {INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has viewed the grimoires.     May-05-2021 Wednesday PDT 08:37:45
 {INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has logged off.     May-05-2021 Wednesday PDT 08:38:07
 {INFO} -  [com.revature.shop.control.ShopFront]   -     Program closed     May-05-2021 Wednesday PDT 08:38:09
+{INFO} -  [com.revature.shop.control.ShopFront]   -     User Alec Sig has registered as a customer.     May-05-2021 Wednesday PDT 09:38:17
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Alec Sig has logged in     May-05-2021 Wednesday PDT 09:38:33
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Alec Sig has viewed grimoires for sale.     May-05-2021 Wednesday PDT 09:38:40
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Alec Sig has made an offer of $4488000 over 10 weeks for Beginner's Guide to the Inferno     May-05-2021 Wednesday PDT 09:39:13
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Alec Sig has logged out.     May-05-2021 Wednesday PDT 09:39:35
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has logged in     May-05-2021 Wednesday PDT 09:39:46
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has viewed pending offers.     May-05-2021 Wednesday PDT 09:39:51
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has accepted an offer.     May-05-2021 Wednesday PDT 09:40:13
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has added a new grimoire.     May-05-2021 Wednesday PDT 09:41:13
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Employee Ryan Boi has logged off.     May-05-2021 Wednesday PDT 09:41:20
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Bob Dob has logged in     May-05-2021 Wednesday PDT 09:41:40
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Bob Dob has viewed their owned grimoires.     May-05-2021 Wednesday PDT 09:41:43
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Customer Bob Dob has logged out.     May-05-2021 Wednesday PDT 09:41:56
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has logged in     May-05-2021 Wednesday PDT 09:42:12
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has viewed all employees     May-05-2021 Wednesday PDT 09:42:14
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has fired an employee.     May-05-2021 Wednesday PDT 09:42:23
+{INFO} -  [com.revature.shop.control.ShopFront]   -     Manager Kevin Big has viewed all employees     May-05-2021 Wednesday PDT 09:42:25
