@@ -25,8 +25,8 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", roleId=" + roleId + ", name=" + userName + ", password=" + password
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "User [userId=" + userId + ", roleId=" + roleId + ", userName=" + userName + ", password=" + password
+				+ ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	public Integer getUserId() {
 		return userId;
@@ -40,10 +40,10 @@ public class User {
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
-	public String getName() {
+	public String getUserName() {
 		return userName;
 	}
-	public void setName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 	public String getPassword() {
@@ -70,6 +70,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 
 }
