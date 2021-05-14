@@ -9,16 +9,22 @@ import java.util.Properties;
 public class DatabaseConnect {
 
 	private static Connection connection;
+	private static final String dbName = "postgres";
+	private static final String hostName = System.getenv("URL");
+	private static final String userName = System.getenv("NAME");
+	private static final String password = System.getenv("PASS");
+	private static final String url = "jdbc:postgresql://" + hostName + ":" + 5432 + "/" + dbName + "?user=" + userName
+			+ "&password=" + password;
 
-	public static Connection getEnvConnection() throws SQLException
-	{
+	public static Connection getConnection() throws SQLException {
 
-		String url = System.getenv("URL");
-		String username = System.getenv("USER_NAME");
-		String password = System.getenv("PASSWORD");
-
-		if(connection == null || connection.isClosed()) {
-		connection = DriverManager.getConnection(url, username, password);
+		if (connection == null || connection.isClosed()) {
+			try {
+				connection = DriverManager.getConnection(url);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return connection;

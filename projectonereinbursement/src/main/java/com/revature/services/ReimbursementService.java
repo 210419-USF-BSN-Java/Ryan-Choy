@@ -2,6 +2,7 @@ package com.revature.services;
 
 import java.util.List;
 
+import com.revature.exception.ERSexception;
 import com.revature.models.Reimbursement;
 
 public interface ReimbursementService {
@@ -9,7 +10,7 @@ public interface ReimbursementService {
 	List<Reimbursement> viewReimbursement(Integer userId);
 	//employee: view their pending requests
 	List<Reimbursement> viewPendingReimbursement(Integer userId);
-	Reimbursement submitReinRequest(Reimbursement r);
+	Reimbursement submitReinRequest(Reimbursement r) throws ERSexception;
 	
 	//manager: view all pending requests from all employees
 	List<Reimbursement> viewPendingReimbursement();

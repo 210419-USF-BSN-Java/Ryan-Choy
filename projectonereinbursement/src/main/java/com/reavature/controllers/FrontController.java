@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.servlets.DefaultServlet;
 
-public class FrontController extends HttpServlet {
+public class FrontController extends DefaultServlet {
 
 	/**
 	 * 

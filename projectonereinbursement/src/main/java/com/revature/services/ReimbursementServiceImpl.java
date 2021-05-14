@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.reavature.dao.ReimbursementDAO;
 import com.reavature.dao.ReimbursementDAOImpl;
+import com.revature.exception.ERSexception;
+import com.revature.exception.ERSvalidations;
 import com.revature.models.Reimbursement;
 
 public class ReimbursementServiceImpl implements ReimbursementService {
@@ -27,8 +29,10 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 	}
 
 	@Override
-	public Reimbursement submitReinRequest(Reimbursement r) {
-		// TODO Auto-generated method stub
+	public Reimbursement submitReinRequest(Reimbursement r) throws ERSexception {
+		if(!ERSvalidations.isValidAmount(r.getAmount())) {
+			throw new ERSexception("Entered amount: "+ r.getAmount()+" is invalid");
+		}
 		return rd.submitReinRequest(r);
 	}
 

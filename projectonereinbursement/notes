@@ -1,0 +1,4 @@
+pass the login information through the body
+
+jdbc:postgresql://{Your AWS URL}/
+to connect

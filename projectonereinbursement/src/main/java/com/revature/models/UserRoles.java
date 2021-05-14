@@ -2,7 +2,7 @@ package com.revature.models;
 
 public enum UserRoles {
 	EMPLOYEE(1),
-	MANAGER(1);
+	MANAGER(2);
 
 	private final int value;
 	

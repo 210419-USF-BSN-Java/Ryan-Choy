@@ -1,28 +1,80 @@
 package com.reavature.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.User;
+import com.revature.util.DatabaseConnect;
 
 public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User login(String userName, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User log = new User();
+		String sql = "SELECT * FROM ers.ers_users WHERE (ers_username,ers_password) = (?,?)";
+		
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);
+			
+			ps.setString(1, userName);
+			ps.setString(2, password);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				log.setUserId(rs.getInt("ers_users_id"));
+				log.setUserName(userName);
+				log.setPassword(password);
+				log.setFirstName(rs.getString("user_first_name"));
+				log.setLastName(rs.getString("user_last_name"));
+				log.setEmail(rs.getString("user_email"));
+				log.setRoleId(rs.getInt("ers_user_role_id"));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return log;
 	}
 
 	@Override
 	public User updateProfile(User u) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<User> viewAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> empList = new ArrayList<>();
+		String sql = "SELECT * FROM ers.ers_users";
+		
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				User emp = new User();
+				emp.setUserId(rs.getInt("ers_users_id"));
+				emp.setUserName(rs.getString("ers_username"));
+				emp.setRoleId(rs.getInt("ers_user_role_id"));
+				emp.setPassword(rs.getString("ers_password"));
+				emp.setFirstName(rs.getString("user_first_name"));
+				emp.setLastName(rs.getString("user_last_name"));
+				emp.setEmail(rs.getString("user_email"));
+				empList.add(emp);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return empList;
 	}
 
 	
