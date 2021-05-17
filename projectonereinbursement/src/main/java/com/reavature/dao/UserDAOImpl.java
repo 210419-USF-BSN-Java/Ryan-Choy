@@ -45,14 +45,34 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateProfile(User u) {
+		User up = new User();
+		String sql = "UPDATE ers.ers_users SET (ers_username, ers_password,user_email) = (?,?,?) WHERE ers_users_id = ?";
 		
-		return null;
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);
+			
+			ps.setString(1, u.getUserName());
+			ps.setString(2, u.getPassword());
+			ps.setString(3, u.getEmail());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				up = u;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return u;
 	}
 
 	@Override
 	public List<User> viewAllEmployees() {
 		List<User> empList = new ArrayList<>();
-		String sql = "SELECT * FROM ers.ers_users";
+		String sql = "SELECT * FROM ers.ers_users WHERE ers_user_role_id = 1 ORDER BY ers_users_id";
 		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);

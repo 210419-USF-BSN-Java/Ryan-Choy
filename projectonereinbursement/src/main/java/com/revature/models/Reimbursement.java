@@ -2,13 +2,14 @@ package com.revature.models;
 
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Reimbursement {
 	private Integer reimbId;
 	private BigDecimal amount;
-	private Date dateSubmitted;
-	private Date dateResolved;
+	private Timestamp dateSubmitted;
+	private Timestamp dateResolved;
 	private String description;
 	private InputStream receipt;
 	
@@ -23,8 +24,9 @@ public class Reimbursement {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reimbursement(Integer reimbId, BigDecimal amount, Date dateSubmitted, Date dateResolved, String description,
-			InputStream receipt, Integer author, Integer resolver, Integer statusId, Integer typeId) {
+	public Reimbursement(Integer reimbId, BigDecimal amount, Timestamp dateSubmitted, Timestamp dateResolved,
+			String description, InputStream receipt, Integer author, Integer resolver, Integer statusId,
+			Integer typeId) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;
@@ -56,16 +58,16 @@ public class Reimbursement {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
-	public Date getDateSubmitted() {
+	public Timestamp getDateSubmitted() {
 		return dateSubmitted;
 	}
-	public void setDateSubmitted(Date dateSubmitted) {
+	public void setDateSubmitted(Timestamp dateSubmitted) {
 		this.dateSubmitted = dateSubmitted;
 	}
-	public Date getDateResolved() {
+	public Timestamp getDateResolved() {
 		return dateResolved;
 	}
-	public void setDateResolved(Date dateResolved) {
+	public void setDateResolved(Timestamp dateResolved) {
 		this.dateResolved = dateResolved;
 	}
 	public String getDescription() {
@@ -104,7 +106,6 @@ public class Reimbursement {
 	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
-
 	
 	
 
