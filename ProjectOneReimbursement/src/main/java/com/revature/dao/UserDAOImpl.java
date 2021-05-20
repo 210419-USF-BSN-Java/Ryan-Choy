@@ -1,4 +1,4 @@
-package com.reavature.dao;
+package com.revature.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -95,6 +95,37 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 		return empList;
+	}
+
+	@Override
+	public User findById(Integer userid) {
+		User log = new User();
+		String sql = "SELECT * FROM ers.ers_users WHERE ers_users_id";
+		
+		try {
+			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);
+			
+			ps.setInt(1, userid);
+			
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				log.setUserId(rs.getInt("ers_users_id"));
+				log.setUserName(rs.getString("ers_username"));
+				log.setPassword(rs.getString("ers_password"));
+				log.setFirstName(rs.getString("user_first_name"));
+				log.setLastName(rs.getString("user_last_name"));
+				log.setEmail(rs.getString("user_email"));
+				log.setRoleId(rs.getInt("ers_user_role_id"));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return log;
 	}
 
 	

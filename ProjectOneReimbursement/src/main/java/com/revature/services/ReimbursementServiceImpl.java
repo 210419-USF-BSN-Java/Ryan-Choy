@@ -2,8 +2,8 @@ package com.revature.services;
 
 import java.util.List;
 
-import com.reavature.dao.ReimbursementDAO;
-import com.reavature.dao.ReimbursementDAOImpl;
+import com.revature.dao.ReimbursementDAO;
+import com.revature.dao.ReimbursementDAOImpl;
 import com.revature.exception.ERSexception;
 import com.revature.exception.ERSvalidations;
 import com.revature.models.Reimbursement;

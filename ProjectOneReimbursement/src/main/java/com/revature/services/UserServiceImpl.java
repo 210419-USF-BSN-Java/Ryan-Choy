@@ -2,8 +2,8 @@ package com.revature.services;
 
 import java.util.List;
 
-import com.reavature.dao.UserDAO;
-import com.reavature.dao.UserDAOImpl;
+import com.revature.dao.UserDAO;
+import com.revature.dao.UserDAOImpl;
 import com.revature.exception.ERSexception;
 import com.revature.exception.ERSvalidations;
 import com.revature.models.Reimbursement;
@@ -32,6 +32,12 @@ public class UserServiceImpl implements UserService{
 	public List<User> viewAllEmployees() {
 		// TODO Auto-generated method stub
 		return ud.viewAllEmployees();
+	}
+
+	@Override
+	public User findById(Integer userid) {
+		// TODO Auto-generated method stub
+		return ud.findById(userid);
 	}
 	
 	

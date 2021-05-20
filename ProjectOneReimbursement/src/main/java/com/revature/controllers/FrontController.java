@@ -1,13 +1,15 @@
-package com.reavature.controllers;
+package com.revature.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.servlets.DefaultServlet;
+//@WebServlet(name = "login", urlPatterns = { "/login" })
 
 public class FrontController extends DefaultServlet {
 
@@ -18,24 +20,24 @@ public class FrontController extends DefaultServlet {
 
 	private RequestHelper rh = new RequestHelper();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getRequestURI().substring(request.getContextPath().length());
 		if(path.startsWith("/static/") || path.equals("/") || path.equals("/index.html") ) {
 			super.doGet(request, response);
-		} else {
-			
-		}
+		} 
 	}
 
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		rh.processPost(request, response);
-//	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		rh.processPost(request, response);
 	}
+	
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+//		doGet(request, response);
+////		String username = request.getParameter("username");
+////		System.out.println(username);
+//	}
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		doGet(request, response);

@@ -1,4 +1,4 @@
-package com.reavature.controllers;
+package com.revature.controllers;
 
 import java.io.IOException;
 
@@ -20,13 +20,19 @@ public class RequestHelper {
 		String path = request.getServletPath();
 		switch(path) {
 		case "/login":
-			ud.login(request, response);
+			ud.logins(request, response);
 			break;
 			default:
 				response.sendError(405);
 			
 		}
 
+
+	}
+	
+	public void processGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException{
+		StringBuilder uriString = new StringBuilder(request.getRequestURI());
 
 	}
 

@@ -1,4 +1,4 @@
-package com.reavature.controllers;
+package com.revature.controllers;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -18,6 +18,7 @@ public class testing {
 		//System.out.println(us.viewAllEmployees());
 		
 		//System.out.println(System.getenv("PASS"));
+		System.out.println(System.getenv("NAME"));
 	
 	}
 

@@ -1,4 +1,4 @@
-package com.reavature.dao;
+package com.revature.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

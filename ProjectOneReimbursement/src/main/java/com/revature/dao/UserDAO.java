@@ -1,4 +1,4 @@
-package com.reavature.dao;
+package com.revature.dao;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ public interface UserDAO {
 
 	User login(String userName, String password);
 
+	User findById(Integer userid);
 	// employees
 	User updateProfile(User u);
 
