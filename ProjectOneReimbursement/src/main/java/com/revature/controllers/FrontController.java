@@ -19,26 +19,31 @@ public class FrontController extends DefaultServlet {
 	private static final long serialVersionUID = 1L;
 
 	private RequestHelper rh = new RequestHelper();
-
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void process(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException {
+		// /p1reim/
 		String path = request.getRequestURI().substring(request.getContextPath().length());
 		if(path.startsWith("/static/") || path.equals("/") || path.equals("/index.html") ) {
+			
+			// index or front page
 			super.doGet(request, response);
-		} 
+			//System.out.println("front page is called");
+		} else {
+			rh.processRequest(request, response);
+		}
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("get is called");
+		process(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("post is called");
 		rh.processPost(request, response);
 	}
-	
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-//		doGet(request, response);
-////		String username = request.getParameter("username");
-////		System.out.println(username);
-//	}
-	
+
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		doGet(request, response);
 	}

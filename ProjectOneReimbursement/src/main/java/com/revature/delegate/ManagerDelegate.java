@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class EmployeeDelegate implements Delegatable {
+public class ManagerDelegate implements Delegatable {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -15,7 +15,7 @@ public class EmployeeDelegate implements Delegatable {
 		if (path == null || path.equals("")) {
 			switch(request.getMethod()) {
 				case "GET":
-					request.getRequestDispatcher("static/views/employee.html").forward(request, response);
+					request.getRequestDispatcher("static/views/manager.html").forward(request, response);
 		
 					break;
 				case "PUT":
@@ -37,5 +37,5 @@ public class EmployeeDelegate implements Delegatable {
 		}
 		
 	}
-	
+
 }

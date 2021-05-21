@@ -17,32 +17,7 @@ public class UserDelegate  {
 	
 	private UserService us = new UserServiceImpl();
 	private ObjectMapper om = new ObjectMapper();
-	
-	public void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = (String) request.getAttribute("path");
-		
-		if (path == null || path.equals("")) {
-			switch (request.getMethod()) {
-			case "GET":
-				//get all users
-				//call services
-				break;
-			case "POST":
-				//post new user
-				break;
 
-			default:
-				response.sendError(400, "Request not supported.");
-
-				break;
-			}
-		} else {
-			
-		}
-		
-		
-	}
-	
 	public void logins(HttpServletRequest request, HttpServletResponse response)throws IOException{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -51,11 +26,11 @@ public class UserDelegate  {
 		
 		if (u.getUserId() != null) {
 			String dough = u.getUserId()+":"+ u.getRoleId();
-			Cookie choco = new Cookie("id",dough);
-			System.out.println(u);
+		
+			System.out.println("token is made");
 			
 			response.setStatus(200);
-			response.addCookie(choco);
+			response.setHeader("User", dough);
 			
 		} else {
 			response.sendError(401);
@@ -63,23 +38,26 @@ public class UserDelegate  {
 		
 	}
 	
-	public Integer uType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		Cookie[] chip = request.getCookies();
+	public boolean uType(HttpServletRequest request) throws ServletException, IOException{
+		String useToken = request.getHeader("User");
 		
-		if(chip != null) {
-			String[] crumble = chip[0].getValue().split(":");
+		if(useToken != null) {
+			String[] crumble = useToken.split(":");
 			
 			if(crumble.length == 2) {
-				User u = us.findById(Integer.parseInt(crumble[0]));
+				String userId = crumble[0];
+				String roleId = crumble[1];
+				User u = us.findById(Integer.parseInt(userId));
 				
-				if(u != null && u.getRoleId().equals(Integer.parseInt(crumble[1]))) {
-					return Integer.parseInt(crumble[1]);
+				if(u != null && u.getRoleId().equals(Integer.parseInt(roleId))) {
+					System.out.println("authorize is called");
+					return true;
 				}
 				
 			}
 		}
 		
-		return null;
+		return false;
 	}
 	
 
