@@ -33,7 +33,7 @@ public class UserDAOImpl implements UserDAO {
 				log.setLastName(rs.getString("user_last_name"));
 				log.setEmail(rs.getString("user_email"));
 				log.setRoleId(rs.getInt("ers_user_role_id"));
-
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

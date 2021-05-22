@@ -8,12 +8,16 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
 import com.revature.services.UserService;
 import com.revature.services.UserServiceImpl;
 
 public class UserDelegate  {
+	
+	private static Logger uLog = Logger.getLogger(UserDelegate.class);
 	
 	private UserService us = new UserServiceImpl();
 	private ObjectMapper om = new ObjectMapper();
@@ -26,8 +30,19 @@ public class UserDelegate  {
 		
 		if (u.getUserId() != null) {
 			String dough = u.getUserId()+":"+ u.getRoleId();
-		
+			
 			System.out.println("token is made");
+			switch(u.getRoleId()) {
+			case 1:
+				uLog.info("Employee "+ u.getFirstName()+" "+u.getLastName()+" has logged in.");
+				break;
+				
+			case 2:
+				uLog.info("Manager "+ u.getFirstName()+" "+u.getLastName()+" has logged in.");
+				break;
+			default:
+				break;
+			}
 			
 			response.setStatus(200);
 			response.setHeader("User", dough);
