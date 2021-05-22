@@ -87,6 +87,8 @@ public class RequestHelper {
 			
 		case "logout":
 			response.setHeader(null, null);
+			response.sendRedirect("http://localhost:8080/ProjectOneReimbursement/");
+			
 			break;
 		default:
 			response.sendError(404);
