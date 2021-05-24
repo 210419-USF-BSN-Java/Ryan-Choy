@@ -1,7 +1,7 @@
 viewAllPending();
 
 function viewAllPending(){
-	let token = localStorage.getItem("token")
+	let token = sessionStorage.getItem("token")
 	let xhr = new XMLHttpRequest();
 	let url = "http://localhost:8080/ProjectOneReimbursement/viewAllPend";
 	xhr.open("GET", url);
@@ -25,21 +25,21 @@ function viewAllPending(){
 	}
 	
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.setRequestHeader("Authorization",token);
+	xhr.setRequestHeader("User",token);
 	xhr.send();
 }
 
-document.getElementById("resolve").addEventListener("click", requestAction);
+document.getElementById("resolve").addEventListener("click", resolveReim);
 document.getElementById("back").addEventListener("click", back);
 
-function requestAction(){
-	let reimID = document.getElementById("reimID").value;
-	let action = document.getElementById("action").value;
+function resolveReim(){
+	let reimID = document.getElementById("reimId").value;
+	let action = document.getElementById("resolve").value;
 	console.log(action);
-	let token = localStorage.getItem("token")
+	let token = sessionStorage.getItem("token")
 	
 	let xhr = new XMLHttpRequest();
-	let url = "http://localhost:8080/ERS/reimAction";
+	let url = "http://localhost:8080/ProjectOneReimbursement/updateReim";
 	xhr.open("POST", url);
 	
 	xhr.onreadystatechange = function(){
@@ -49,12 +49,12 @@ function requestAction(){
 
 		} 
 		else if (xhr.readyState == 4){
-			alert("Failed to resolved this reimbursement request!, please check your login status.");
+			alert("Failed to resolved this reimbursement request! Please check your login status.");
 		}
 	}
 
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.setRequestHeader("Authorization",token);
+	xhr.setRequestHeader("User",token);
 	let requestBody = `reimID=${reimID}&action=${action}`;
 	xhr.send(requestBody);
 }
