@@ -11,8 +11,13 @@ function viewRes(){
 			let resList = xhr.getResponseHeader("resolvedList");
 			let resJSON = JSON.parse(resList);
 			
+
+			
+			let content = document.getElementById("resList")
+			
+			for(i = 0; i < resJSON.length; i++){
 				let reimtype = "";
-				switch(Number(resJSON.typeId)){
+				switch(Number(resJSON[i].typeId)){
 				case 1:
 				reimtype = "Lodging";
 				break;
@@ -31,7 +36,7 @@ function viewRes(){
 			}
 			
 			let statustype = "";
-			switch(Number(resJSON.statusId)){
+			switch(Number(resJSON[i].statusId)){
 				case 2:
 				statustype = "Approved";
 				break;
@@ -42,11 +47,7 @@ function viewRes(){
 				break;
 				
 			}
-			
-			let content = document.getElementById("resList")
-			
-			for(i = 0; i < resJSON.length; i++){
-				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + new Date(resJSON[i].dateSubmitted).toString() + "</td><td>" + new Date(resJSON[i].dateResolved).toString() + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + resJSON[i].statusId + "</td><td>" + reimtype + "</td>";
+				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + new Date(resJSON[i].dateSubmitted).toString() + "</td><td>" + new Date(resJSON[i].dateResolved).toString() + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + statustype + "</td><td>" + reimtype + "</td>";
 				content.insertAdjacentHTML('beforeend',request);
 			}
 	} else if(xhr.readyState==4){
@@ -58,9 +59,8 @@ function viewRes(){
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.setRequestHeader("User",token);
 	xhr.send();
-	
+}	
 document.getElementById("back").addEventListener("click", back);
 	function back(){
     window.location.href="http://localhost:8080/ProjectOneReimbursement/employee";
-}
 }

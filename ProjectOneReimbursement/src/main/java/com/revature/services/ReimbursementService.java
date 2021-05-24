@@ -19,6 +19,6 @@ public interface ReimbursementService {
 
 	// manager view requests from a single employee
 	List<Reimbursement> viewReimbursementEmp(Integer userId);
-	boolean updateReimbursementRequest(int update, Integer reimbId);
+	boolean updateReimbursementRequest(int update, Integer reimbId,Integer managId);
 
 }

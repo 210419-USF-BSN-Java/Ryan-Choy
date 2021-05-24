@@ -19,7 +19,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 
 		List<Reimbursement> empList = new ArrayList<>();
 
-		String sql = "SELECT *, FROM ers.ers_reimbursement WHERE ers_users_id = ? AND reimb_status_id = 2 OR reimb_status_id = 3 ORDER BY reimb_resolved";
+		String sql = "SELECT * FROM ers.ers_reimbursement WHERE ers_users_id = ? AND reimb_status_id = 2 OR reimb_status_id = 3 ORDER BY reimb_resolved";
 
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);
@@ -33,7 +33,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				res.setAmount(rs.getBigDecimal("reimb_amount"));
 				res.setDateSubmitted(rs.getTimestamp("reimb_submitted"));
 				res.setDateResolved(rs.getTimestamp("reimb_resolved"));
-				res.setAuthor(rs.getInt("ers_user_id"));
+				res.setAuthor(rs.getInt("ers_users_id"));
+				res.setDescription(rs.getString("reimb_description"));
 				res.setResolver(rs.getInt("reimb_resolver"));
 				res.setStatusId(rs.getInt("reimb_status_id"));
 				res.setTypeId(rs.getInt("reimb_type_id"));
@@ -172,7 +173,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				res.setAmount(rs.getBigDecimal("reimb_amount"));
 				res.setDateSubmitted(rs.getTimestamp("reimb_submitted"));
 				res.setDateResolved(rs.getTimestamp("reimb_resolved"));
-				res.setAuthor(rs.getInt("ers_user_id"));
+				res.setAuthor(rs.getInt("ers_users_id"));
+				res.setDescription(rs.getString("reimb_description"));
 				res.setResolver(rs.getInt("reimb_resolver"));
 				res.setStatusId(rs.getInt("reimb_status_id"));
 				res.setTypeId(rs.getInt("reimb_type_id"));
@@ -208,7 +210,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				res.setAmount(rs.getBigDecimal("reimb_amount"));
 				res.setDateSubmitted(rs.getTimestamp("reimb_submitted"));
 				res.setDateResolved(rs.getTimestamp("reimb_resolved"));
-				res.setAuthor(rs.getInt("ers_user_id"));
+				res.setAuthor(rs.getInt("ers_users_id"));
+				res.setDescription(rs.getString("reimb_description"));
 				res.setResolver(rs.getInt("reimb_resolver"));
 				res.setStatusId(rs.getInt("reimb_status_id"));
 				res.setTypeId(rs.getInt("reimb_type_id"));
@@ -226,7 +229,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public boolean updateReimbursementRequest(int update, Integer reimbId) {
+	public boolean updateReimbursementRequest(int update, Integer reimbId, Integer managId) {
 		
 		String sql = "UPDATE ers.ers_reimbursement SET reimb_status_id = ? WHERE reimb_id = ?";
 		

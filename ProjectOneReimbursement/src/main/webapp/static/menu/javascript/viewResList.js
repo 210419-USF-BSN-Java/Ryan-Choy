@@ -8,7 +8,7 @@ function viewRes(){
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			let resList = xhr.getResponseHeader("resolvedList");
+			let resList = xhr.getResponseHeader("allRes");
 			let resJSON = JSON.parse(resList);
 			
 
@@ -47,7 +47,7 @@ function viewRes(){
 				break;
 				
 			}
-				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + new Date(resJSON[i].dateSubmitted).toString() + "</td><td>" + new Date(resJSON[i].dateResolved).toString() + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + resJSON[i].statusId + "</td><td>" + reimtype + "</td>";
+				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + new Date(resJSON[i].dateSubmitted).toString() + "</td><td>" + new Date(resJSON[i].dateResolved).toString() + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + statustype + "</td><td>" + reimtype + "</td>";
 				content.insertAdjacentHTML('beforeend',request);
 			}
 	} else if(xhr.readyState==4){

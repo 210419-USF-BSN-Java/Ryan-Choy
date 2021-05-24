@@ -142,6 +142,7 @@ public class EmployeeDelegate {
 		u.setUserName(username);
 		u.setPassword(password);
 		u.setEmail(email);
+		u.setUserId(uId);
 		
 		boolean update = ud.updateProfile(u);
 		if(update == true) {

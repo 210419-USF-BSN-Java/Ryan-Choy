@@ -55,6 +55,7 @@ public class UserDAOImpl implements UserDAO {
 			ps.setString(1, u.getUserName());
 			ps.setString(2, u.getPassword());
 			ps.setString(3, u.getEmail());
+			ps.setInt(4, u.getUserId());
 			
 			ResultSet rs = ps.executeQuery();
 			

@@ -88,7 +88,7 @@ public class ManagerDelegate  {
 	//view requests from an employee
 	public void viewAllReqEmp(HttpServletRequest request, HttpServletResponse response) {
 		
-		String id = request.getParameter("eId");
+		String id = request.getParameter("empId");
 		List<Reimbursement> allReqEmp = rd.viewReimbursementEmp(Integer.parseInt(id));
 		String allReqEmpJSON = null;
 		
@@ -121,7 +121,7 @@ public class ManagerDelegate  {
 			break;
 		}
 		
-		boolean success = rd.updateReimbursementRequest(statusId, rId);
+		boolean success = rd.updateReimbursementRequest(statusId, rId,mId);
 		
 		if(success == true) {
 			response.setStatus(200);
