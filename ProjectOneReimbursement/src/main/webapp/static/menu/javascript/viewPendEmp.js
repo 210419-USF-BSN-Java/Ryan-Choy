@@ -14,7 +14,7 @@ function viewPend(){
 			let content = document.getElementById("pendList")
 			
 			for(i = 0; i < pendJSON.length; i++){
-				let request ="<td>" + pendJSON[i].reimbId + "</td><td>" + pendJSON[i].amount + "</td><td>" + pendJSON[i].dateSubmitted + "</td><td>" + pendJSON[i].description + "</td><td>" + pendJSON[i].author + "</td><td>" + pendJSON[i].typeId + "</td>";
+				let request ="<td>" + pendJSON[i].reimbId + "</td><td>" + pendJSON[i].amount + "</td><td>" + new Date(pendJSON[i].dateSubmitted).toString()  + "</td><td>" + pendJSON[i].description + "</td><td>" + pendJSON[i].author + "</td><td>" + pendJSON[i].typeId + "</td>";
 				content.insertAdjacentHTML('beforeend',request);
 			}
 	} else if(xhr.readyState==4){

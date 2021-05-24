@@ -37,6 +37,7 @@ document.getElementById("viewPend").addEventListener("click", viewPend);
 document.getElementById("viewRes").addEventListener("click", viewRes);
 document.getElementById("submit").addEventListener("click", submit);
 document.getElementById("viewProfile").addEventListener("click", viewProfile);
+document.getElementById("updateProfile").addEventListener("click", updateProfile);
 document.getElementById("logout").addEventListener("click", logout);
 
 
@@ -50,10 +51,18 @@ function viewRes(){
 }
 
 function submit(){
-		window.location.href="http://localhost:8080/ProjectOneReimbursement/submit";
+	window.location.href="http://localhost:8080/ProjectOneReimbursement/submit";
+
+}
+function viewProfile(){
+	window.location.href="http://localhost:8080/ProjectOneReimbursement/viewInfo";
 
 }
 
+function updateProfile(){
+	window.location.href="http://localhost:8080/ProjectOneReimbursement/updateInfo";
+
+}
 
 function logout(){
 		window.location.href="http://localhost:8080/ProjectOneReimbursement/logout";

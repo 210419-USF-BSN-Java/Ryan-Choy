@@ -101,7 +101,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User findById(Integer userid) {
 		User log = new User();
-		String sql = "SELECT * FROM ers.ers_users WHERE ers_users_id";
+		String sql = "SELECT * FROM ers.ers_users WHERE ers_users_id = ?";
 		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);

@@ -14,11 +14,11 @@ function viewRes(){
 			let content = document.getElementById("resList")
 			
 			for(i = 0; i < resJSON.length; i++){
-				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + resJSON[i].dateSubmitted + "</td><td>" + resJSON[i].dateResolved + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + resJSON[i].statusId + "</td><td>" + resJSON[i].typeId + "</td>";
+				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + new Date(resJSON[i].dateSubmitted).toString() + "</td><td>" + new Date(resJSON[i].dateResolved).toString() + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + resJSON[i].statusId + "</td><td>" + resJSON[i].typeId + "</td>";
 				content.insertAdjacentHTML('beforeend',request);
 			}
 	} else if(xhr.readyState==4){
-					alert("Failed to load your pending reimbursements! Please check your login status.");
+					alert("Failed to load your resolved reimbursements! Please check your login status.");
 	}
 
 }

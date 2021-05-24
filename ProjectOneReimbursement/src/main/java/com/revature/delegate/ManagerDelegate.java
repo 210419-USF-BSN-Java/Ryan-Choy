@@ -106,9 +106,22 @@ public class ManagerDelegate  {
 	public void updateReim(HttpServletRequest request, HttpServletResponse response) {
 		
 		int rId = Integer.parseInt(request.getParameter("reimID"));
-		int yn = Integer.parseInt(request.getParameter("action"));
+		String yn = request.getParameter("action");
+		int statusId = 0;
 		
-		boolean success = rd.updateReimbursementRequest(yn, rId);
+		switch (yn) {
+		case "Approve":
+			statusId = 2;
+			break;
+		case "Deny":
+			statusId = 3;
+			break;
+
+		default:
+			break;
+		}
+		
+		boolean success = rd.updateReimbursementRequest(statusId, rId);
 		
 		if(success == true) {
 			response.setStatus(200);

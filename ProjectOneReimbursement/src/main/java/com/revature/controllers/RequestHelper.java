@@ -68,25 +68,48 @@ public class RequestHelper {
 			ed.viewResReim(request, response);
 			break;
 
+		case "/viewInfo":
+			request.getRequestDispatcher("static/menu/viewProfile.html").forward(request, response);
+			break;
 		case "/viewProfile":
 			ed.viewProfile(request, response);
 			break;
-
+			
+		case"/updateInfo":
+			request.getRequestDispatcher("static/menu/updateProfile.html").forward(request, response);
+			break;
+			
+		case"/viewPendList":
+			request.getRequestDispatcher("static/menu/viewPendList.html").forward(request, response);
+			break;
+			
 		case "/viewAllPend":
-			md.viewAllRes(request, response);
+			md.viewAllPend(request, response);
+			break;
+			
+		case"/viewResList":
+			request.getRequestDispatcher("static/menu/viewResList.html").forward(request, response);
 			break;
 
 		case "/viewAllRes":
 			md.viewAllRes(request, response);
 			break;
 			
+		case"/viewEmpList":
+			request.getRequestDispatcher("static/menu/viewEmpList.html").forward(request, response);
+			break;
+			
 		case "/viewAllEmp":
 			md.viewAllEmp(request, response);
 			break;
 			
+		case"/viewReqEmp":
+			request.getRequestDispatcher("static/menu/viewReqEmp.html").forward(request, response);
+			break;
 		case "/viewAllReqByEmp":
 			md.viewAllReqEmp(request, response);
 			break;
+			
 			
 		default:
 			response.sendError(405);
