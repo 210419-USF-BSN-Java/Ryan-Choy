@@ -12,9 +12,33 @@ function viewAllPending(){
             let pendList = xhr.getResponseHeader("allPending");
 			let pListJSON = JSON.parse(pendList);
 			
+
+			
 			let content = document.getElementById("pendList");
 				for(i = 0; i < pListJSON.length; i++){
-				let request ="<td>" + pListJSON[i].reimbId + "</td><td>" + pListJSON[i].amount + "</td><td>" + new Date(pListJSON[i].dateSubmitted).toString()  + "</td><td>" + pListJSON[i].description + "</td><td>" + pListJSON[i].author + "</td><td>" + pListJSON[i].typeId + "</td>";
+					
+			let reimtype = "";
+			
+			switch(Number(pListJSON[i].typeId)){
+				case 1:
+				reimtype = "Lodging";
+				
+				break;
+				case 2:
+				reimtype = "Travel";
+				break;
+				case 3:
+				reimtype = "Food";
+				break;
+				case 4:
+				reimtype = "Other";
+				break;
+				default:
+				break;
+				
+			}
+					
+				let request ="<td>" + pListJSON[i].reimbId + "</td><td>" + pListJSON[i].amount + "</td><td>" + new Date(pListJSON[i].dateSubmitted).toString()  + "</td><td>" + pListJSON[i].description + "</td><td>" + pListJSON[i].author + "</td><td>" + reimtype + "</td>";
 				content.insertAdjacentHTML('beforeend',request);
 			}
 
@@ -33,7 +57,7 @@ document.getElementById("resolve").addEventListener("click", resolveReim);
 document.getElementById("back").addEventListener("click", back);
 
 function resolveReim(){
-	let reimID = document.getElementById("reimId").value;
+	let reimId = document.getElementById("reimId").value;
 	let action = document.getElementById("resolve").value;
 	console.log(action);
 	let token = sessionStorage.getItem("token")
@@ -55,7 +79,7 @@ function resolveReim(){
 
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.setRequestHeader("User",token);
-	let requestBody = `reimID=${reimID}&action=${action}`;
+	let requestBody = `reimId=${reimId}&action=${action}`;
 	xhr.send(requestBody);
 }
 

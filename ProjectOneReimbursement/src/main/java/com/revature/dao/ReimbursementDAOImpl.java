@@ -137,8 +137,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				res.setAmount(rs.getBigDecimal("reimb_amount"));
 				res.setDateSubmitted(rs.getTimestamp("reimb_submitted"));
 				res.setDateResolved(rs.getTimestamp("reimb_resolved"));
-
-				res.setAuthor(rs.getInt("ers_user_id"));
+				res.setDescription(rs.getString("reimb_description"));
+				res.setAuthor(rs.getInt("ers_users_id"));
 				res.setResolver(rs.getInt("reimb_resolver"));
 				res.setStatusId(rs.getInt("reimb_status_id"));
 				res.setTypeId(rs.getInt("reimb_type_id"));
@@ -160,7 +160,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		//manager: view all resolved requests
 		List<Reimbursement> rReim = new ArrayList<>();
 		
-		String sql = "SELECT * FROM ers.ers_reimbursement WHERE reimb_status_id = 2 OR reimb_status_id = 3 ORDER BY reimb_resolved ORDER BY reimb_resolved";
+		String sql = "SELECT * FROM ers.ers_reimbursement WHERE reimb_status_id = 2 OR reimb_status_id = 3 ORDER BY reimb_resolved";
 		
 		try {
 			PreparedStatement ps = DatabaseConnect.getConnection().prepareStatement(sql);
