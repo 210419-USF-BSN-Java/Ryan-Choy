@@ -70,6 +70,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				res.setAmount(rs.getBigDecimal("reimb_amount"));
 				res.setDateSubmitted(rs.getTimestamp("reimb_submitted"));
 				res.setDateResolved(rs.getTimestamp("reimb_resolved"));
+				res.setDescription(rs.getString("reimb_description"));
 				res.setAuthor(rs.getInt("ers_users_id"));
 				res.setResolver(rs.getInt("reimb_resolver"));
 				res.setStatusId(rs.getInt("reimb_status_id"));

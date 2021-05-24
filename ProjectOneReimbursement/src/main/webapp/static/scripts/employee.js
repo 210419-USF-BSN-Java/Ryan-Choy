@@ -44,11 +44,16 @@ function viewPend(){
 	window.location.href="http://localhost:8080/ProjectOneReimbursement/viewPendEmp";
 
 }
+function viewRes(){
+	window.location.href="http://localhost:8080/ProjectOneReimbursement/viewResEmp";
+
+}
 
 function submit(){
 		window.location.href="http://localhost:8080/ProjectOneReimbursement/submit";
 
 }
+
 
 function logout(){
 		window.location.href="http://localhost:8080/ProjectOneReimbursement/logout";

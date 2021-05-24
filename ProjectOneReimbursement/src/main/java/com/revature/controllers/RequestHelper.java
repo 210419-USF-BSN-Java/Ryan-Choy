@@ -59,6 +59,10 @@ public class RequestHelper {
 		case "/viewPendingByEmp":
 			ed.viewPendReim(request, response);
 			break;
+			
+		case "/viewResEmp":
+			request.getRequestDispatcher("static/menu/viewResEmp.html").forward(request, response);
+			break;
 
 		case "/viewResReimByEmp":
 			ed.viewResReim(request, response);

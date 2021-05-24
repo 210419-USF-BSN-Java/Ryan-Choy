@@ -1,20 +1,20 @@
-viewPend();
+viewRes();
 
-function viewPend(){
+function viewRes(){
 	let token = sessionStorage.getItem("token");
 	let xhr = new XMLHttpRequest();
-	let url = "http://localhost:8080/ProjectOneReimbursement/viewPendingByEmp";
+	let url = "http://localhost:8080/ProjectOneReimbursement/viewResReimByEmp";
 	xhr.open("GET",url);
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			let pendList = xhr.getResponseHeader("pendingList");
-			let pendJSON = JSON.parse(pendList);
+			let resList = xhr.getResponseHeader("resolvedList");
+			let resJSON = JSON.parse(resList);
 			
-			let content = document.getElementById("pendList")
+			let content = document.getElementById("resList")
 			
-			for(i = 0; i < pendJSON.length; i++){
-				let request ="<td>" + pendJSON[i].reimbId + "</td><td>" + pendJSON[i].amount + "</td><td>" + pendJSON[i].dateSubmitted + "</td><td>" + pendJSON[i].description + "</td><td>" + pendJSON[i].author + "</td><td>" + pendJSON[i].typeId + "</td>";
+			for(i = 0; i < resJSON.length; i++){
+				let request ="<td>" + resJSON[i].reimbId + "</td><td>" + resJSON[i].amount + "</td><td>" + resJSON[i].dateSubmitted + "</td><td>" + resJSON[i].dateResolved + "</td><td>" + resJSON[i].description + "</td><td>" + resJSON[i].author + "</td><td>" + resJSON[i].resolver + "</td><td>" + resJSON[i].statusId + "</td><td>" + resJSON[i].typeId + "</td>";
 				content.insertAdjacentHTML('beforeend',request);
 			}
 	} else if(xhr.readyState==4){
