@@ -9,96 +9,117 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.delegate.EmployeeDelegate;
 import com.revature.delegate.ManagerDelegate;
 import com.revature.delegate.UserDelegate;
-import com.revature.delegate.ViewDelegate;
+
 
 public class RequestHelper {
 //doget dopost, etc.
 	// front controller -> request helper -> delegate -> services -> dao
 
 	private UserDelegate ud = new UserDelegate();
-	private EmployeeDelegate ed = new EmployeeDelegate();
-	private ManagerDelegate md = new ManagerDelegate();
-	private ViewDelegate vd = new ViewDelegate();
-	
+
 	public void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+		EmployeeDelegate ed = new EmployeeDelegate(request);
+		ManagerDelegate md = new ManagerDelegate(request);
+
+		System.out.println("in doGet");
 		String path = request.getServletPath();
-		if(path.startsWith("/api/")) {
-			// we will authenticate the token here
-			System.out.println("token is checked");
-			if(!ud.uType(request)) {
-				response.sendError(401);
-				return;
-			}
+
+		System.out.println(path);
+		// Get information
+		switch (path) {
+		
+		case "/login":
+			request.getRequestDispatcher("/static/views/login.html").forward(request, response);
+			break;
 			
+		case "/logout":
+			// calls sessionStorage.clear();
+			request.getRequestDispatcher("/static/views/logout.html").forward(request, response);
+			break;
 			
-		} else {
-			System.out.println("view is called");
-			vd.resolveView(request, response);
+		case "/error":
+			request.getRequestDispatcher("/static/views/error.html").forward(request, response); 
+			break;
+		
+		case "/employee":
+			request.getRequestDispatcher("static/views/employee.html").forward(request, response);
+			break;
+		case "/manager":
+			request.getRequestDispatcher("static/views/manager.html").forward(request, response);
+			break;
+			
+		case "/submit":
+			request.getRequestDispatcher("static/menu/submit.html").forward(request, response);
+		
+		case "/viewPendEmp":
+			request.getRequestDispatcher("static/menu/viewPendEmp.html").forward(request, response);
+			break;
+
+		case "/viewPendingByEmp":
+			ed.viewPendReim(request, response);
+			break;
+
+		case "/viewResReimByEmp":
+			ed.viewResReim(request, response);
+			break;
+
+		case "/viewProfile":
+			ed.viewProfile(request, response);
+			break;
+
+		case "/viewAllPend":
+			md.viewAllRes(request, response);
+			break;
+
+		case "/viewAllRes":
+			md.viewAllRes(request, response);
+			break;
+			
+		case "/viewAllEmp":
+			md.viewAllEmp(request, response);
+			break;
+			
+		case "/viewAllReqByEmp":
+			md.viewAllReqEmp(request, response);
+			break;
+			
+		default:
+			response.sendError(405);
+			break;
 		}
-		
-		
-		
-//		StringBuilder uriString = new StringBuilder(request.getRequestURI());
-//		uriString.replace(0, request.getContextPath().length() + 1, "");
-//		if(!ud.uType(request)) {
-//			response.sendError(401);
-//			return;
-//		}
-//
-//		if (uriString.indexOf("/") != -1) {
-//			request.setAttribute("path", uriString.substring(uriString.indexOf("/") + 1));
-//			uriString.replace(uriString.indexOf("/"), uriString.length(), "");
-//			
-//		}
-//		
-//		switch (uriString.toString()) {
-//		case "employee":
-//			ed.process(request, response);
-//			break;
-//		case "manager":
-//			md.process(request, response);
-//			break;
-//		default:
-//			response.sendError(404, "Path not supported");
-//		}
-		
-		
-	
 
 	}
 
 	public void processPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		StringBuilder uriString = new StringBuilder(request.getRequestURI());
-		uriString.replace(0, request.getContextPath().length() + 1, "");
+		String path = request.getServletPath();
+		ManagerDelegate md = new ManagerDelegate(request);
+		EmployeeDelegate ed = new EmployeeDelegate(request);
 
-		if (uriString.indexOf("/") != -1) {
-			request.setAttribute("path", uriString.substring(uriString.indexOf("/") + 1));
-			uriString.replace(uriString.indexOf("/"), uriString.length(), "");
-		}
-
-		switch (uriString.toString()) {
-		case "login":
-			//System.out.println("login is called");
+		switch (path) {
+		case "/login":
+			// System.out.println("login is called");
 			ud.logins(request, response);
 			break;
-			
-		case "logout":
-			response.setHeader(null, null);
-			response.sendRedirect("http://localhost:8080/ProjectOneReimbursement/");
-			
+
+		case "/submitReim":
+			ed.submitReim(request, response);
 			break;
+
+		case "/updateProfile":
+			ed.updateProfile(request, response);
+			break;
+			
+		case "/updateReim":
+			md.updateReim(request, response);
+			break;
+
 		default:
 			response.sendError(404);
+			break;
 
 		}
 	}
 
-
-		
-		
-
-	
 }

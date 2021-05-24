@@ -61,7 +61,7 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 	}
 
 	@Override
-	public String updateReimbursementRequest(int update, Integer reimbId) {
+	public boolean updateReimbursementRequest(int update, Integer reimbId) {
 		// TODO Auto-generated method stub
 		return rd.updateReimbursementRequest(update, reimbId);
 	}

@@ -1,6 +1,32 @@
 /**
  * 
  */
+let aTok = localStorage.getItem("token");
+
+loged();
+
+function loged(){
+	if(aTok != null){
+		let tokArray = aTok.split(":");
+		switch(Number(tokArray[1])){
+				case 1:
+				//redirect to employee
+				window.location.href="http://localhost:8080/ProjectOneReimbursement/employee"
+				break;
+			
+				case 2:
+				window.location.href="http://localhost:8080/ProjectOneReimbursement/manager"
+				break;
+				
+				default:
+				window.location.href="http://localhost:8080/ProjectOneReimbursement/error"
+
+				break;
+		}
+	}
+}
+
+
 
 document.getElementById("login-btn").addEventListener("click", requestLogin);
 

@@ -11,7 +11,7 @@ public class Reimbursement {
 	private Timestamp dateSubmitted;
 	private Timestamp dateResolved;
 	private String description;
-	private InputStream receipt;
+
 	
 	//user id
 	private Integer author;
@@ -25,26 +25,17 @@ public class Reimbursement {
 		// TODO Auto-generated constructor stub
 	}
 	public Reimbursement(Integer reimbId, BigDecimal amount, Timestamp dateSubmitted, Timestamp dateResolved,
-			String description, InputStream receipt, Integer author, Integer resolver, Integer statusId,
-			Integer typeId) {
+			String description, Integer author, Integer resolver, Integer statusId, Integer typeId) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;
 		this.dateSubmitted = dateSubmitted;
 		this.dateResolved = dateResolved;
 		this.description = description;
-		this.receipt = receipt;
 		this.author = author;
 		this.resolver = resolver;
 		this.statusId = statusId;
 		this.typeId = typeId;
-	}
-	@Override
-	public String toString() {
-		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", dateSubmitted=" + dateSubmitted
-				+ ", dateResolved=" + dateResolved + ", description=" + description + ", receipt=" + receipt
-				+ ", author=" + author + ", resolver=" + resolver + ", statusId=" + statusId + ", typeId=" + typeId
-				+ "]";
 	}
 	public Integer getReimbId() {
 		return reimbId;
@@ -75,12 +66,6 @@ public class Reimbursement {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public InputStream getReceipt() {
-		return receipt;
-	}
-	public void setReceipt(InputStream receipt) {
-		this.receipt = receipt;
 	}
 	public Integer getAuthor() {
 		return author;

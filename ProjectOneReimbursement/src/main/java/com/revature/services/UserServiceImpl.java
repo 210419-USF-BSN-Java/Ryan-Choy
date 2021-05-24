@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateProfile(User u) throws ERSexception {
+	public boolean updateProfile(User u) throws ERSexception {
 		if(!ERSvalidations.isValidUserName(u.getUserName())||!ERSvalidations.isValidPassword(u.getPassword())||!ERSvalidations.isValidEmail(u.getEmail())) {
 			throw new ERSexception("Entered information is invalid ");
 		}

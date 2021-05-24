@@ -11,7 +11,7 @@ public interface UserDAO {
 
 	User findById(Integer userid);
 	// employees
-	User updateProfile(User u);
+	boolean updateProfile(User u);
 
 	// just in case
 	// User viewProfile();

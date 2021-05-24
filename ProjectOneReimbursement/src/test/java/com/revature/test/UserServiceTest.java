@@ -77,7 +77,7 @@ public class UserServiceTest {
 	//update
 	@Test
 	public void updateTestRight() throws ERSexception{
-		when(daoMock.updateProfile(u)).thenReturn(u);
+		when(daoMock.updateProfile(u)).thenReturn(true);
 		u.setUserName("bigNoodle");
 		u.setPassword("BIIIGWOROD");
 		u.setEmail("test@gmail.com");

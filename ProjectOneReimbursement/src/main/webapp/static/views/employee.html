@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Welcome Employee!</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<title>Employee</title>
 </head>
-<body>
-<h3>What would you like to do?</h3>
-
-	  <ul>
-		<li><a href="SubmitReimbursement.html">Submit Reimbursement Request</a></li>
-		<li><a href="ReviewReimbursements.html">View Pending Reimbursement Requests</a></li>
-		<li><a href="ViewResolvedreimbursements.html">View Resolved Reimbursement Requests</a></li>
-		<li><a href="AccountInformation.html">View Account Information</a></li>
-	  </ul>
-
-
-<script src="static/views/employee.js"></script>
+<body style = "background:orange;">
+	<div style = "display:flex;justify-content:center">
+	<h1 id = "greet"></h1>
+	</div>
+	
+	<div style ="display:flex;justify-content:right">
+	<div>
+	<br>
+	<button id = "viewPend" class="form-control mb-3" type="submit">View all pending reimbursement requests</button>
+    <br>
+	<button id = "viewRes" class="form-control mb-3" type="submit">View all resolved reimbursement requests</button>
+    <br>
+	<button id = "submit" class="form-control mb-3" type="submit">Submit a new reimbursement request</button>
+    <br>
+    <button id = "viewProfile" class="form-control mb-3" type="submit">View personal information.</button>
+    <br>
+    <button id = "logout" class="form-control mb-3" type="submit">Log out</button>
+	</div>
+	</div>
+<script src="static/scripts/employee.js"></script>
 </body>
 </html>

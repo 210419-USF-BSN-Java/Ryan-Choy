@@ -29,7 +29,7 @@ public class UserDelegate  {
 		User u = us.login(username, password);
 		
 		if (u.getUserId() != null) {
-			String dough = u.getUserId()+":"+ u.getRoleId();
+			String dough = u.getUserId()+":"+ u.getRoleId()+":"+u.getFirstName()+":"+u.getLastName();
 			
 			System.out.println("token is made");
 			switch(u.getRoleId()) {
@@ -59,7 +59,7 @@ public class UserDelegate  {
 		if(useToken != null) {
 			String[] crumble = useToken.split(":");
 			
-			if(crumble.length == 2) {
+			if(crumble.length == 4) {
 				String userId = crumble[0];
 				String roleId = crumble[1];
 				User u = us.findById(Integer.parseInt(userId));

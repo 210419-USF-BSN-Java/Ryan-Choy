@@ -44,8 +44,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User updateProfile(User u) {
+	public boolean updateProfile(User u) {
 		User up = new User();
+		
 		String sql = "UPDATE ers.ers_users SET (ers_username, ers_password,user_email) = (?,?,?) WHERE ers_users_id = ?";
 		
 		try {
@@ -58,7 +59,7 @@ public class UserDAOImpl implements UserDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				up = u;
+				return true;
 			}
 
 		} catch (SQLException e) {
@@ -66,7 +67,7 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 		
-		return u;
+		return false;
 	}
 
 	@Override

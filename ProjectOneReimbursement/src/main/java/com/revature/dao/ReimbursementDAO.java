@@ -22,6 +22,6 @@ public interface ReimbursementDAO {
 	// manager view requests from a single employee
 	List<Reimbursement> viewReimbursementEmp(Integer userId);
 
-	String updateReimbursementRequest(int update, Integer reimbId);
+	boolean updateReimbursementRequest(int update, Integer reimbId);
 
 }

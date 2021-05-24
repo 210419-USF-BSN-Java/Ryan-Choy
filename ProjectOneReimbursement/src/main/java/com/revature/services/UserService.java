@@ -14,7 +14,7 @@ public interface UserService {
 	User findById(Integer userid);
 	
 	//employees
-	User updateProfile(User u) throws ERSexception;
+	boolean updateProfile(User u) throws ERSexception;
 
 	//just in case
 	//User viewProfile();
