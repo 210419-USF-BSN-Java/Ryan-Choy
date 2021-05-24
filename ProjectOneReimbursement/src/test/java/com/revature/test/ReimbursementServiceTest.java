@@ -74,8 +74,8 @@ public class ReimbursementServiceTest {
 	
 	@Test
 	public void updateReimbursementRight() throws ERSexception{
-		when(daoMock.updateReimbursementRequest(update, id)).thenReturn(true);
-		assertNotNull(rs.updateReimbursementRequest(update, id));
+		when(daoMock.updateReimbursementRequest(update, id, id)).thenReturn(true);
+		assertNotNull(rs.updateReimbursementRequest(update, id,id));
 	}
 	
 	@Test
